@@ -17,6 +17,8 @@ public class BuyoutUser implements UserDetails {
 
     String password;
 
+    @OneToOne(mappedBy = "profile", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+    Profile profile;
 
     public long getId() {
         return id;
@@ -30,6 +32,14 @@ public class BuyoutUser implements UserDetails {
         return username;
     }
 
+    public Profile getProfile() {
+        return profile;
+    }
+
+    public void setProfile(Profile profile) {
+        this.profile = profile;
+    }
+
     public void setUsername(String username) {
         this.username = username;
     }
@@ -41,6 +51,8 @@ public class BuyoutUser implements UserDetails {
     public void setPassword(String password) {
         this.password = password;
     }
+
+
 
 //############################################# User Details section
     @Override
