@@ -1,7 +1,9 @@
 package com.buyout.sale.buyout.controllers;
 
 import com.buyout.sale.buyout.models.BuyoutUser;
+import com.buyout.sale.buyout.models.Profile;
 import com.buyout.sale.buyout.repository.BuyoutUserRepository;
+import com.buyout.sale.buyout.repository.ProfileRepository;
 import com.google.gson.Gson;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -30,6 +32,8 @@ public class BuyoutUserControllers {
     @Autowired
     AuthenticationManager authenticationManager;
 
+    @Autowired
+    ProfileRepository profileRepository;
 
     @GetMapping("/login")
     public String loginRoute(){
@@ -50,17 +54,41 @@ public class BuyoutUserControllers {
         return "signup.html";
     }
 
-    @PostMapping("/signup")
-    public RedirectView signUp(String username, String password){
-        BuyoutUser holder= new BuyoutUser();
-        String encodedPass = passwordEncoder.encode(password);
-        holder.setUsername(username);
-        holder.setPassword(encodedPass);
 
-        buyoutUserRepository.save(holder);
+    @PostMapping("/signup")
+    public RedirectView signUp(String username, String password, String email){
+        if(buyoutUserRepository.findByUsername(username)==null){
+            if(profileRepository.findByEmail(email)==null){
+                System.out.println("User can be made!");
+                BuyoutUser user= new BuyoutUser();
+                String encodedPass = passwordEncoder.encode(password);
+                user.setUsername(username);
+                user.setPassword(encodedPass);
+
+                Profile profile= new Profile(email,user);
+                profileRepository.save(profile);
+                buyoutUserRepository.save(user);
+            }else {
+                System.out.println("Email is a dupe");
+                return new RedirectView("/duplication");
+            }
+
+        }else {
+            System.out.println("Username is a dupe");
+            return new RedirectView("/duplication");
+        }
+
+
+
+
 
 
         return new RedirectView("/signup");
+    }
+
+    @GetMapping("/duplication")
+    public String dupe(){
+        return "duplication.html";
     }
 
 }
