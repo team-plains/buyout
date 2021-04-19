@@ -1,0 +1,275 @@
+body { 
+  display: grid;
+  grid-template-areas: 
+    "logo header1 header1 header2 header3"
+    "nav nav article article article"
+    "nav nav footer footer footer";
+  grid-template-rows: 80px 1fr 70px;  
+  grid-template-columns: 270px 150px 1fr 1fr 250px;
+  grid-row-gap: 10px;
+  grid-column-gap: 10px;
+  height: 100vh;
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  }  
+#header1, #header2, #header3, footer, article, nav, div {
+  padding: 1.2em;
+  background: #DFE7EF;
+  }
+ 
+
+#header0{
+  grid-area:header0;
+}
+
+  #header1{
+    grid-area: header1;
+  }
+  #header2{
+    grid-area: header2;
+  }
+  #header3{
+    grid-area: header3;
+  }
+
+#pageFooter {
+  grid-area: footer;
+  }
+#mainArticle { 
+  grid-area: article;      
+  }
+#mainNav { 
+  grid-area: nav; 
+  }
+#sitelogo { 
+  grid-area: logo; 
+  margin: 0px;
+  padding: 0px;
+
+  } 
+  #sitelogo a{
+    text-decoration: none;
+    color: black;
+  }
+  #sitelogo img{
+    float:left;
+    height:80px;
+  }
+  #sitelogo h1{
+    font-family: 'Lexend', sans-serif;
+    margin-top: .6em;
+  }
+/* Stack the layout on small devices/viewports. */
+/* @media all and (max-width: 575px) {
+  body { 
+    grid-template-areas: 
+      "header"
+      "article"
+      "logo"
+      "nav"
+      "footer";
+    grid-template-rows: 80px 1fr 70px 1fr 70px;  
+    grid-template-columns: 1fr;
+ }
+} */
+
+/* -------------------login form-------------------- */
+
+.login input{
+
+  padding: 5px;
+  margin: 0px 5px 0px 0;
+  border: none;
+  background: #f1f1f1;  
+}
+
+.login button {
+  background-color: #4CAF50;
+  color: white;
+  padding: 5px;
+  width: 100px;
+  border: none;
+  cursor: pointer;
+  opacity: 0.8;
+
+}
+
+
+
+/* ------------------logout button --------------------- */
+
+
+.logout input{
+
+  padding: 5px;
+  margin: 0px 5px 0px 0;
+  border: none;
+  background: #f1f1f1;  
+}
+
+.logout button {
+  background-color: #af7c4c;
+  color: white;
+  padding: 5px;
+  width: 100px;
+  border: none;
+  cursor: pointer;
+
+}
+
+/* -----------------signup form --------------------- */
+
+/* Button used to open the contact form */
+.open-button {
+  background-color: rgb(30, 174, 75);
+  color: white;
+  padding: 5px 20px;
+  border: none;
+  cursor: pointer;
+  opacity: 0.8;
+  width: 280px;
+}
+
+.form-popup {
+  display: none;
+  position: fixed;
+  margin-top: -50px; 
+  border: 3px solid #f1f1f1;
+  z-index: 9;
+}
+
+.form-container {
+  max-width: 400px;
+  padding: 10px;
+  background-color: white;
+}
+
+.form-container input[type=text], .form-container input[type=password], .form-container input[type=email] {
+  width: 90%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  border: none;
+  background: #f1f1f1;
+}
+
+.form-container input[type=text]:focus, .form-container input[type=password]:focus, .form-container input[type=email]:focus {
+  background-color: #ddd;
+  outline: none;
+}
+
+.form-container .btn {
+  background-color: #4CAF50;
+  color: white;
+  padding: 16px 20px;
+  border: none;
+  cursor: pointer;
+  margin:10px auto 10px auto;
+  opacity: 0.8;
+  display: block;
+  width: 70%;
+}
+
+.form-container .cancel {
+  background-color: red;
+}
+
+.form-container .btn:hover, .open-button:hover {
+  opacity: 1;
+}
+
+/* ------------- nav filters ----------- */
+
+#mainNav {
+  font-size: large;
+}
+#mainNav fieldset {
+border-radius: 8px;
+}
+#mainNav input {
+float:left;
+}
+#mainNav label {
+display: block;
+  padding: 10px 30px 10px 5px;
+font-weight: bold;
+}
+#mainNav span {
+  padding-left: 30px;
+}
+
+
+
+
+
+/* --------------------------product cards-------- */
+#mainArticle {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  align-items: flex-start;
+}
+
+.card-title, .card-body a{
+  font-family: 'Roboto', sans-serif;
+  font-size: large;
+}
+.card-body a {
+  padding: 5px;
+}
+
+.card{
+  box-shadow: 0px 15px 35px -5px rgba(50, 88, 130, 0.32);
+  border-radius: 15px;
+  transition: transform .2s;
+  }
+
+.card-body{
+  padding: 10px;
+  margin-top: -80px;
+  -webkit-transition: all 1s ease;
+  -moz-transition: all 1s ease;
+  -o-transition: all 1s ease;
+  transition: all 1s ease-in-out;
+}
+
+.card-body a{
+  visibility: hidden;
+
+}
+.card-body span{
+  visibility: hidden;
+
+}
+
+.card:hover > .card-body{
+  margin-top: -0px;
+  -webkit-transition: all 1s ease;
+  -moz-transition: all 1s ease;
+  -o-transition: all 1s ease;
+  transition: all 1s ease;
+}
+
+.card:hover > .card-body > a{
+  visibility: visible;
+
+}
+
+.card:hover > .card-body > span{
+  visibility: visible;
+
+}
+.product-image{
+  width: 100%;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+}
+
+
+
+/* --------------------*/
+
+
+
+/* references */
+/* https://codepen.io/albertoleon/pen/jONyrvY product cards*/
+/* https://www.w3schools.com/howto/howto_js_popup_form.asp signup form dropdown*/
