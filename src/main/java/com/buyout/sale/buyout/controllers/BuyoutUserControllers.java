@@ -43,6 +43,12 @@ public class BuyoutUserControllers {
     @Autowired
     ProfileRepository profileRepository;
 
+    public Boolean isLoggedIn(Principal p){
+        if (p != null) return true;
+        else return false;
+    }
+
+
     @GetMapping("/login")
     public String loginRoute(){
 
@@ -67,7 +73,9 @@ public class BuyoutUserControllers {
        }
         m.addAttribute("hasProducts",hasProducts);
        System.out.println(hasProducts);
-        return "testhome.html";
+        boolean loggedIn=isLoggedIn(p);
+        m.addAttribute("loggedIn", loggedIn);
+        return "index";
     }
 
     @GetMapping("/signup")
@@ -96,23 +104,22 @@ public class BuyoutUserControllers {
                 System.out.println("Email is a dupe");
                 return new RedirectView("/duplication");
             }
-
         }else {
             System.out.println("Username is a dupe");
             return new RedirectView("/duplication");
         }
-
-
-
-
-
-
-        return new RedirectView("/signup");
+        return new RedirectView("/");
     }
 
     @GetMapping("/duplication")
     public String dupe(){
         return "duplication.html";
+    }
+
+    @GetMapping("/addproduct")
+    public String addProduct(){
+
+        return "addproduct.html";
     }
 
 }

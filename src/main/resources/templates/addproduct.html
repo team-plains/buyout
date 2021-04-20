@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Buyout.sale</title>
+</head>
+<body>
+<h1 th:if="${email}" th:text="'Logged in as: '+ ${email}"></h1>
+
+<div th:if="${hasProducts}" th:each="product : ${products}" >
+
+    <h2 th:text="${product.productName}"></h2>
+    <img th:src="${product.productImage}"/>
+    <p th:text="${product.productDescription}"></p>
+    <p th:text="${product.productPrice}"></p>
+
+</div>
+
+<div th:if="${email}" class="add-product">
+    <form action="/addproduct" method="POST" class="product-form-container">
+        <h1>Add Product</h1>
+        <label for="productName">Product Name</label>
+        <input id="productName"
+               type="text"
+               name="productName"
+               placeholder="an old taco"
+               required>
+        <label for="price">Price</label>
+        <input id="productPrice"
+               type="number"
+               name="productPrice"
+               placeholder="Price (in whole dollars)"
+               required>
+        <label for="description">Description</label>
+        <textarea id="productdescription"
+                  rows="4" cols="50"
+                  name="productDescription"
+                  required></textarea>
+        <label for="productImage">Image</label>
+        <input  id="productImage"
+                type="url"
+                name="productImage"
+                placeholder="https://i.redd.it/6k6vs1mlrg921.jpg"
+                required>
+        <button type="submit" class="btn">List Item</button>
+    </form>
+</div>
+</body>
+</html>

@@ -1,120 +1,106 @@
-body { 
+body {
   display: grid;
-  grid-template-areas: 
-    "logo header1 header1 header2 header3"
-    "nav nav article article article"
-    "nav nav footer footer footer";
-  grid-template-rows: 80px 1fr 70px;  
-  grid-template-columns: 270px 150px 1fr 1fr 250px;
+  grid-template-areas:
+    "logo logo header1 header2"
+    "nav nav article article"
+    "nav nav footer footer";
+  grid-template-rows: 80px 1fr 70px;
+  grid-template-columns: 270px 120px 1fr 480px;
   grid-row-gap: 10px;
   grid-column-gap: 10px;
   height: 100vh;
   margin: 0;
   font-family: Arial, Helvetica, sans-serif;
-  }  
+}
 #header1, #header2, #header3, footer, article, nav, div {
   padding: 1.2em;
   background: #DFE7EF;
-  }
- 
-
-#header0{
-  grid-area:header0;
 }
 
-  #header1{
-    grid-area: header1;
-  }
-  #header2{
-    grid-area: header2;
-  }
-  #header3{
-    grid-area: header3;
-  }
+
+#header1{
+  grid-area: header1;
+}
+
+#header2{
+  grid-area: header2;
+}
+
 
 #pageFooter {
   grid-area: footer;
-  }
-#mainArticle { 
-  grid-area: article;      
-  }
-#mainNav { 
-  grid-area: nav; 
-  }
-#sitelogo { 
-  grid-area: logo; 
+}
+#mainArticle {
+  grid-area: article;
+}
+#mainNav {
+  grid-area: nav;
+}
+#sitelogo {
+  grid-area: logo;
   margin: 0px;
   padding: 0px;
 
-  } 
-  #sitelogo a{
-    text-decoration: none;
-    color: black;
-  }
-  #sitelogo img{
-    float:left;
-    height:80px;
-  }
-  #sitelogo h1{
-    font-family: 'Lexend', sans-serif;
-    margin-top: .6em;
-  }
+}
+#sitelogo a{
+  text-decoration: none;
+  color: black;
+}
+#sitelogo img{
+  float:left;
+  height:80px;
+}
+#sitelogo h1{
+  font-family: 'Lexend', sans-serif;
+  margin-top: .6em;
+}
 /* Stack the layout on small devices/viewports. */
 /* @media all and (max-width: 575px) {
-  body { 
-    grid-template-areas: 
+  body {
+    grid-template-areas:
       "header"
       "article"
       "logo"
       "nav"
       "footer";
-    grid-template-rows: 80px 1fr 70px 1fr 70px;  
+    grid-template-rows: 80px 1fr 70px 1fr 70px;
     grid-template-columns: 1fr;
  }
 } */
 
 /* -------------------login form-------------------- */
 
-.login input{
+/*.login input{*/
 
-  padding: 5px;
-  margin: 0px 5px 0px 0;
-  border: none;
-  background: #f1f1f1;  
-}
+/*    padding: 5px;*/
+/*    margin: 0px 5px 0px 0;*/
+/*    border: none;*/
+/*    background: #f1f1f1;*/
+/*}*/
 
-.login button {
-  background-color: #4CAF50;
-  color: white;
-  padding: 5px;
-  width: 100px;
-  border: none;
-  cursor: pointer;
-  opacity: 0.8;
+/*.login button {*/
+/*    background-color: #4CAF50;*/
+/*    color: white;*/
+/*    padding: 5px;*/
+/*    width: 100px;*/
+/*    border: none;*/
+/*    cursor: pointer;*/
+/*    opacity: 0.8;*/
 
-}
-
-
+/*}*/
 
 /* ------------------logout button --------------------- */
 
 
-.logout input{
-
-  padding: 5px;
-  margin: 0px 5px 0px 0;
-  border: none;
-  background: #f1f1f1;  
-}
-
-.logout button {
+.logout-button{
   background-color: #af7c4c;
   color: white;
-  padding: 5px;
-  width: 100px;
+  padding: 30px;
+  margin: 0 10px 10px 0;
   border: none;
   cursor: pointer;
-
+  opacity: 0.8;
+  width: 200px;
 }
 
 /* -----------------signup form --------------------- */
@@ -123,23 +109,26 @@ body {
 .open-button {
   background-color: rgb(30, 174, 75);
   color: white;
-  padding: 5px 20px;
+  padding: 10px;
+  margin: 0 10px 10px 0;
   border: none;
   cursor: pointer;
   opacity: 0.8;
-  width: 280px;
+  width: 200px;
+  display: inline;
 }
 
 .form-popup {
   display: none;
   position: fixed;
-  margin-top: -50px; 
+  margin-top: -50px;
+  margin-right: 10px;
   border: 3px solid #f1f1f1;
   z-index: 9;
 }
 
 .form-container {
-  max-width: 400px;
+  max-width: 600px;
   padding: 10px;
   background-color: white;
 }
@@ -177,21 +166,27 @@ body {
   opacity: 1;
 }
 
+
+.dupeforms{
+  display: block;
+  margin: 50px;
+}
+
 /* ------------- nav filters ----------- */
 
 #mainNav {
   font-size: large;
 }
 #mainNav fieldset {
-border-radius: 8px;
+  border-radius: 8px;
 }
 #mainNav input {
-float:left;
+  float:left;
 }
 #mainNav label {
-display: block;
+  display: block;
   padding: 10px 30px 10px 5px;
-font-weight: bold;
+  font-weight: bold;
 }
 #mainNav span {
   padding-left: 30px;
@@ -221,7 +216,12 @@ font-weight: bold;
   box-shadow: 0px 15px 35px -5px rgba(50, 88, 130, 0.32);
   border-radius: 15px;
   transition: transform .2s;
-  }
+  margin:10px;
+
+}
+
+
+
 
 .card-body{
   padding: 10px;
@@ -270,6 +270,103 @@ font-weight: bold;
 
 
 
+/* add product----------- */
+
+
+.product-form-container {
+  max-width: 600px;
+  padding: 10px;
+  background-color: white;
+}
+
+.product-form-container input, .product-form-container textarea {
+  width: 90%;
+  padding: 15px;
+  display: block;
+  margin: 5px 0 22px 0;
+  border: none;
+  background: #f1f1f1;
+  background-color: #ddd;
+  outline: none;
+
+}
+
+.product-form-container .btn {
+  background-color: #4CAF50;
+  color: white;
+  padding: 16px 20px;
+  border: none;
+  cursor: pointer;
+  margin:10px auto 10px auto;
+  opacity: 0.8;
+  display: block;
+  width: 70%;
+}
+
+.sellbutton {
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px;
+  margin: 0 10px 10px 0;
+
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  /*margin:10px auto 10px auto;*/
+  opacity: 0.8;
+  display: inline;
+  /*width: 70%;*/
+}
+
+
+
+/* ---------mainnav keyword search and filters---- */
+
+nav {
+  padding: 10px;
+
+}
+nav h2 {
+  margin-bottom: 10px;
+}
+.filters{
+  margin-top: 100px;
+}
+nav input{
+  padding: 10px;
+  margin: 10px auto;
+
+}
+
+nav button{
+  margin-top: 5px;
+  display: block;
+}
+
+.filterbutton {
+  background-color: #4CAF50;
+  color: white;
+  padding: 16px 20px;
+  border: none;
+  cursor: pointer;
+  margin:10px auto 10px auto;
+  opacity: 0.8;
+  display: block;
+  width: 70%;
+}
+
+input[type=checkbox]
+{
+  /* Double-sized Checkboxes */
+  -ms-transform: scale(1.3); /* IE */
+  -moz-transform: scale(1.3); /* FF */
+  -webkit-transform: scale(1.3); /* Safari and Chrome */
+  -o-transform: scale(1.3); /* Opera */
+  transform: scale(1.3);
+  padding: 10px;
+}
+
 /* references */
 /* https://codepen.io/albertoleon/pen/jONyrvY product cards*/
 /* https://www.w3schools.com/howto/howto_js_popup_form.asp signup form dropdown*/
+
