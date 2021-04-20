@@ -15,6 +15,9 @@
     <p th:text="${product.productDescription}"></p>
     <p th:text="${product.productPrice}"></p>
 
+    <form th:action="'/addtocart/'+ ${product.id}+'?_method=PUT'" method="POST">
+        <button value="add cart" type="submit">Add To cart!!!!!#@!@#!@</button>
+    </form>
 </div>
 
 <div th:if="${email}" class="add-product">
@@ -46,5 +49,15 @@
         <button type="submit" class="btn">List Item</button>
     </form>
 </div>
+
+<div th:if="${email}">
+    <h2>CART############################### ></h2>
+    <h1 th:if="${cart.size()==0}">No Items In Cart</h1>
+    <div th:if="${cart.size()!=0}" th:each="item : ${cart}">
+        <h4 th:text="${item.productName}"></h4>
+        <img th:src="${item.productImage}"/>
+    </div>
+</div>
+
 </body>
 </html>
