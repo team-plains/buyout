@@ -48,7 +48,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter{
                 //authorization routes and settings
                 .authorizeRequests()
 //                .antMatchers("/").permitAll()
-                .antMatchers("/signup","/login","/","/profile","/duplication", "/css/**").permitAll()
+                .antMatchers("/signup","/login","/","/profile","/default-signup-login", "/css/**", "/addproduct","/aboutus", "/img/**").permitAll()
                 .anyRequest().authenticated()
 
 

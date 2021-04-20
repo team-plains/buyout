@@ -95,7 +95,7 @@ body {
 .logout-button{
   background-color: #af7c4c;
   color: white;
-  padding: 30px;
+  padding: 10px;
   margin: 0 10px 10px 0;
   border: none;
   cursor: pointer;
@@ -168,8 +168,12 @@ body {
 
 
 .dupeforms{
+
   display: block;
-  margin: 50px;
+  margin: 20px;
+}
+.dupeforms h2{
+  font-size: x-large;
 }
 
 /* ------------- nav filters ----------- */
