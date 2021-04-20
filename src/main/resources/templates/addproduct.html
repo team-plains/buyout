@@ -3,18 +3,105 @@
 <head>
     <meta charset="UTF-8">
     <title>Buyout.sale</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/reset.css">
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
-<h1 th:if="${email}" th:text="'Logged in as: '+ ${email}"></h1>
 
-<div th:if="${hasProducts}" th:each="product : ${products}" >
+<header id="header2" >
+    <span th:if="${loggedIn}">
 
-    <h2 th:text="${product.productName}"></h2>
-    <img th:src="${product.productImage}"/>
-    <p th:text="${product.productDescription}"></p>
-    <p th:text="${product.productPrice}"></p>
+    <form class="logout" action="/logout">
+        <button class="logout-button" type="submit">Log out</button>
+    </form>
+</span>
+
+</header>
+
+
+<header id="header1">
+<!--    <form th:action="'/profile' + ${user.getId()}" method="GET">-->
+    <button type="submit" class="sellbutton">View Your Profile</button>
+    </form>
+
+</header>
+
+
+
+
+
+<article id="mainArticle">
+
+    <span th:if="${!loggedIn}">
+    <h2>Sign up or log in to sell your items.</h2>
+    <div class="dupeforms">
+        <form action="/signup" name="signup" method="POST" class="form-container">
+            <h1>Sign Up</h1>
+            <label for="username">Username</label>
+            <input id="username"
+                   type="text"
+                   minlength="6"
+                   maxlength="16"
+                   name="username"
+                   placeholder="dogeCoin99"
+                   required>
+            <label for="email">Email</label>
+
+            <input  id="email"
+                    type="email"
+                    name="email"
+                    placeholder="superman@protonmail.com"
+                    minlength="6"
+                    required>
+            <label for="password">Password</label>
+
+            <input  id="password"
+                    type="password"
+                    name="password"
+                    placeholder="Pa$$w0rd"
+                    required>
+
+            <button type="submit" class="btn">Sign Up</button>
+
+        </form>
+</div>
+
+
+
+<div class="dupeforms">
+
+        <form action="/login" name="login" method="POST" class="form-container">
+            <h1>Log In</h1>
+            <label for="username">Username</label>
+            <input id="username"
+                   type="text"
+                   minlength="6"
+                   maxlength="16"
+                   name="username"
+                   placeholder="dogeCoin99"
+                   required>
+            <label for="password">Password</label>
+            <input  id="password"
+                    type="password"
+                    name="password"
+                    placeholder="Pa$$w0rd"
+                    required>
+
+            <button type="submit" class="btn">Log In</button>
+
+        </form>
+
 
 </div>
+
+</span>
+
+
+
+
+
 
 <div th:if="${email}" class="add-product">
     <form action="/addproduct" method="POST" class="product-form-container">
@@ -45,5 +132,13 @@
         <button type="submit" class="btn">List Item</button>
     </form>
 </div>
+</article>
+<nav id="mainNav">
+    <h2 th:if="${loggedIn}" th:text="'Logged in as: '+ ${email}"></h2>
+
+</nav>
+<div id="sitelogo"><a href="/"><img src="../static/img/logo.png"><h1>Buyout.sale</h1></a></div>
+<footer id="pageFooter">&copy; 2021 - <a href="/aboutus">About the Developers</a></footer>
+
 </body>
 </html>

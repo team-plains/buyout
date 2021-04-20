@@ -112,14 +112,27 @@ public class BuyoutUserControllers {
     }
 
     @GetMapping("/duplication")
-    public String dupe(){
-        return "duplication.html";
+    public String dupe(Model m){
+        boolean duplicateUsername=true;
+        m.addAttribute("dupe", duplicateUsername);
+        return "default-signup-login";
+    }
+
+    @GetMapping("/default-signup-login")
+    public String mainLoginandSignup(){
+        return "default-signup-login";
     }
 
     @GetMapping("/addproduct")
-    public String addProduct(){
-
+    public String addProduct(Model m, Principal p){
+        if(p!=null){
+            BuyoutUser user = buyoutUserRepository.findByUsername(p.getName());
+            m.addAttribute("email",user.getProfile().getEmail());
+        }
+        boolean loggedIn=isLoggedIn(p);
+        m.addAttribute("loggedIn", loggedIn);
         return "addproduct.html";
     }
+
 
 }
