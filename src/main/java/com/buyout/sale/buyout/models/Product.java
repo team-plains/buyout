@@ -1,7 +1,8 @@
 package com.buyout.sale.buyout.models;
 
 import javax.persistence.*;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 public class Product {
@@ -10,25 +11,27 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.AUTO)
     long id;
 
-    String name;
-    String image;
+    String productName;
+    String productImage;
 
     @Column(columnDefinition = "Text")
-    String description;
+    String productDescription;
 
-    double price;
-    boolean sold=false;
-    boolean checkout=false;
+    double productPrice;
+    boolean productSold =false;
+    boolean productCheckout =false;
 
-    @ManyToMany
-    @JoinColumn(name = "product_id")
-    List<Profile> profileUser;
+    @ManyToOne
+    @JoinColumn(name = "profile_user_id")
+    Profile profileUser;
 
-    public Product(String name, String image, String description, double price) {
-        this.name = name;
-        this.image = image;
-        this.description = description;
-        this.price = price;
+
+    public Product(String productName, String productImage, String productDescription, double productPrice, Profile profileUser) {
+        this.productName = productName;
+        this.productImage = productImage;
+        this.productDescription = productDescription;
+        this.productPrice = productPrice;
+        this.profileUser = profileUser;
     }
 
 
@@ -43,51 +46,73 @@ public class Product {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getProductName() {
+        return productName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setProductName(String productName) {
+        this.productName = productName;
     }
 
-    public String getImage() {
-        return image;
+    public String getProductImage() {
+        return productImage;
     }
 
-    public void setImage(String image) {
-        this.image = image;
+    public void setProductImage(String productImage) {
+        this.productImage = productImage;
     }
 
-    public String getDescription() {
-        return description;
+    public String getProductDescription() {
+        return productDescription;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setProductDescription(String productDescription) {
+        this.productDescription = productDescription;
     }
 
-    public double getPrice() {
-        return price;
+    public double getProductPrice() {
+        return productPrice;
     }
 
-    public void setPrice(double price) {
-        this.price = price;
+    public void setProductPrice(double productPrice) {
+        this.productPrice = productPrice;
     }
 
-    public boolean isSold() {
-        return sold;
+    public boolean isProductSold() {
+        return productSold;
     }
 
-    public void setSold(boolean sold) {
-        this.sold = sold;
+    public void setProductSold(boolean productSold) {
+        this.productSold = productSold;
     }
 
-    public boolean isCheckout() {
-        return checkout;
+    public boolean isProductCheckout() {
+        return productCheckout;
     }
 
-    public void setCheckout(boolean checkout) {
-        this.checkout = checkout;
+    public void setProductCheckout(boolean productCheckout) {
+        this.productCheckout = productCheckout;
+    }
+
+    public Profile getProfileUser() {
+        return profileUser;
+    }
+
+    public void setProfileUser(Profile profileUser) {
+        this.profileUser = profileUser;
+    }
+
+    @Override
+    public String toString() {
+        return "Product{" +
+                "id=" + id +
+                ", productName='" + productName + '\'' +
+                ", productImage='" + productImage + '\'' +
+                ", productDescription='" + productDescription + '\'' +
+                ", productPrice=" + productPrice +
+                ", productSold=" + productSold +
+                ", productCheckout=" + productCheckout +
+                ", profileUser=" + profileUser +
+                '}';
     }
 }

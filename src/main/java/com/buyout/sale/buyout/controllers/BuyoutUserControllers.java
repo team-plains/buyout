@@ -1,14 +1,17 @@
 package com.buyout.sale.buyout.controllers;
 
 import com.buyout.sale.buyout.models.BuyoutUser;
+import com.buyout.sale.buyout.models.Product;
 import com.buyout.sale.buyout.models.Profile;
 import com.buyout.sale.buyout.repository.BuyoutUserRepository;
+import com.buyout.sale.buyout.repository.ProductRepository;
 import com.buyout.sale.buyout.repository.ProfileRepository;
 import com.google.gson.Gson;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -16,6 +19,8 @@ import org.springframework.web.servlet.view.RedirectView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.security.Principal;
+import java.util.List;
 
 //@RestController
 @Controller
@@ -28,6 +33,9 @@ public class BuyoutUserControllers {
 
     @Autowired
     BuyoutUserRepository buyoutUserRepository;
+
+    @Autowired
+    ProductRepository productRepository;
 
     @Autowired
     AuthenticationManager authenticationManager;
@@ -43,21 +51,36 @@ public class BuyoutUserControllers {
 
 
     @GetMapping("/")
-    public String homeRoute(){
+    public String homeRoute(Model m, Principal p){
+        boolean hasProducts= true;
+       if(p!=null){
+           System.out.println(p.getName());
+           List<Product> products = productRepository.findAll();
+            if(products.size()==0){
+                System.out.println("inside product size if statement line 61");
+                hasProducts=false;
+            }else{
+                m.addAttribute("products",products);
+            }
+           BuyoutUser user = buyoutUserRepository.findByUsername(p.getName());
+           m.addAttribute("email",user.getProfile().getEmail());
+       }
+        m.addAttribute("hasProducts",hasProducts);
+       System.out.println(hasProducts);
         return "testhome.html";
     }
 
     @GetMapping("/signup")
     public String singupRoute(){
-        String test= "hi i am test of stuff, gonna be a string pog";
-        String holder = gson.toJson(test);
         return "signup.html";
     }
 
 
     @PostMapping("/signup")
     public RedirectView signUp(String username, String password, String email){
+        //first if is checking the user repo and if it doesn't find, we know it's unique since hasn't been made yet
         if(buyoutUserRepository.findByUsername(username)==null){
+            //this if statement we check the profile repo to see if the entered email is different as well.
             if(profileRepository.findByEmail(email)==null){
                 System.out.println("User can be made!");
                 BuyoutUser user= new BuyoutUser();
@@ -66,8 +89,9 @@ public class BuyoutUserControllers {
                 user.setPassword(encodedPass);
 
                 Profile profile= new Profile(email,user);
-                profileRepository.save(profile);
+
                 buyoutUserRepository.save(user);
+                profileRepository.save(profile);
             }else {
                 System.out.println("Email is a dupe");
                 return new RedirectView("/duplication");
