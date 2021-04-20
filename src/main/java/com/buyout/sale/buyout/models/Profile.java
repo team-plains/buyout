@@ -2,7 +2,9 @@ package com.buyout.sale.buyout.models;
 
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 public class Profile {
@@ -19,10 +21,13 @@ public class Profile {
     private List<Product> products;
 
 
+    @OneToMany(mappedBy = "profileCart", cascade = CascadeType.ALL, orphanRemoval = true,fetch = FetchType.LAZY)
+    private Set<Product> cart = new HashSet<>();
+
+
 //    List<Product> pastPurchased;
 //    List<Review> reviews;
 //    List<Product> savedItems;
-//    List<Product> cart;
 
     @OneToOne
     @JoinColumn(name="profile_id")
@@ -52,29 +57,6 @@ public class Profile {
         this.email = email;
     }
 
-//    public List<Product> getPastPurchased() {
-//        return pastPurchased;
-//    }
-//
-//    public void setPastPurchased(List<Product> pastPurchased) {
-//        this.pastPurchased = pastPurchased;
-//    }
-//
-//    public List<Review> getReviews() {
-//        return reviews;
-//    }
-//
-//    public void setReviews(List<Review> reviews) {
-//        this.reviews = reviews;
-//    }
-//
-//    public List<Product> getSavedItems() {
-//        return savedItems;
-//    }
-//
-//    public void setSavedItems(List<Product> savedItems) {
-//        this.savedItems = savedItems;
-//    }
 
     public List<Product> getProducts() {
         return products;
@@ -84,13 +66,14 @@ public class Profile {
         this.products = products;
     }
 
-//    public List<Product> getCart() {
-//        return cart;
-//    }
-//
-//    public void setCart(List<Product> cart) {
-//        this.cart = cart;
-//    }
+
+    public Set<Product> getCart() {
+        return cart;
+    }
+
+    public void setCart(Set<Product> cart) {
+        this.cart = cart;
+    }
 
     public BuyoutUser getProfile() {
         return profile;

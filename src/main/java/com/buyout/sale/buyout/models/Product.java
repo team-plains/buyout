@@ -25,6 +25,9 @@ public class Product {
     @JoinColumn(name = "profile_user_id")
     Profile profileUser;
 
+    @ManyToOne
+    @JoinColumn(name = "profile_id")
+    Profile profileCart;
 
     public Product(String productName, String productImage, String productDescription, double productPrice, Profile profileUser) {
         this.productName = productName;
@@ -100,6 +103,14 @@ public class Product {
 
     public void setProfileUser(Profile profileUser) {
         this.profileUser = profileUser;
+    }
+
+    public Profile getProfileCart() {
+        return profileCart;
+    }
+
+    public void setProfileCart(Profile profileCart) {
+        this.profileCart = profileCart;
     }
 
     @Override
