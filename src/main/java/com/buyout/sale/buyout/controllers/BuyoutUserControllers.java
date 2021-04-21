@@ -52,15 +52,15 @@ public class BuyoutUserControllers {
     @GetMapping("/login")
     public String loginRoute(){
 
-        return "login.html";
+        return "default-signup-login.html";
     }
 
 
     @GetMapping("/")
     public String homeRoute(Model m, Principal p){
         boolean hasProducts= true;
-       if(p!=null){
-           System.out.println(p.getName());
+
+//           System.out.println(p.getName());
            List<Product> products = productRepository.findAll();
             if(products.size()==0){
                 System.out.println("inside product size if statement line 61");
@@ -68,14 +68,18 @@ public class BuyoutUserControllers {
             }else{
                 m.addAttribute("products",products);
             }
-           BuyoutUser user = buyoutUserRepository.findByUsername(p.getName());
-           m.addAttribute("email",user.getProfile().getEmail());
-       }
+
         m.addAttribute("hasProducts",hasProducts);
        System.out.println(hasProducts);
         boolean loggedIn=isLoggedIn(p);
         m.addAttribute("loggedIn", loggedIn);
-        return "index";
+        if(loggedIn){
+           BuyoutUser user = buyoutUserRepository.findByUsername(p.getName());
+           m.addAttribute("user",user.getProfile());
+//           m.addAttribute("userprofileid", user.getProfile().getId());
+//            System.out.println(user.getProfile().getId());
+        }
+        return "index.html";
     }
 
     @GetMapping("/signup")

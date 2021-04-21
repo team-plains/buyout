@@ -48,14 +48,14 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter{
                 //authorization routes and settings
                 .authorizeRequests()
 //                .antMatchers("/").permitAll()
-                .antMatchers("/signup","/login","/","/profile","/default-signup-login", "/css/**", "/addproduct","/aboutus", "/img/**").permitAll()
+                .antMatchers("/signup","/login","/","/profile","/default-signup-login", "/css/**","/aboutus", "/img/**").permitAll()
                 .anyRequest().authenticated()
 
 
                 //default authentication
                 .and()
                 .formLogin()
-                .defaultSuccessUrl("/")
+//                .defaultSuccessUrl("/")
                 .loginPage("/login")
 
 

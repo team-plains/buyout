@@ -3,17 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <title></title>
-    <!--    <link rel="preconnect" href="https://fonts.gstatic.com">-->
-    <!--    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100&display=swap" rel="stylesheet">-->
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/css/reset.css">
     <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
-<article id="mainArticle">
-<h2 th:if="${dupe}" th:text="An account with that username or email already exists. Please try again."></h2>
 
-<div class="dupeforms">
-        <form action="/signup" name="signup" method="POST" class="form-container">
+<header id="sitelogo">
+    <span th:replace="fragments/fragments :: logo"></span>
+
+</header>
+
+<header id="header1">
+
+</header>
+
+<header id="header2">
+
+</header>
+
+<nav id="mainNav">
+    <span th:if="${dupe}"> <h2 class="formh2">An account with that username or email already exists. Please try again."></h2></span>
+    <span th:unless="${dupe}"> <h2 class="formh2">You need to be logged in to sell an item.</h2></span>
+</nav>
+
+<article id="mainArticle">
+
+    <div class="dupeformbox">
+        <form action="/signup" name="signup" method="POST" class="mainformcontainer">
             <h1>Sign Up</h1>
             <label for="username">Username</label>
             <input id="username"
@@ -30,14 +48,12 @@
                    placeholder="Elon"
                    required>
             <label for="lastname">Last Name</label>
-
             <input id="Last Name"
                    type="text"
                    name="lastname"
                    placeholder="Musk"
                    required>
             <label for="email">Email</label>
-
             <input  id="email"
                     type="email"
                     name="email"
@@ -45,23 +61,16 @@
                     minlength="6"
                     required>
             <label for="password">Password</label>
-
             <input  id="password"
                     type="password"
                     name="password"
                     placeholder="Pa$$w0rd"
                     required>
-
             <button type="submit" class="btn">Sign Up</button>
-
         </form>
 </div>
-
-
-
-<div class="dupeforms">
-
-        <form action="/login" name="login" method="POST" class="form-container">
+    <div class="dupeformbox">
+        <form action="/login" name="login" method="POST" class="mainformcontainer">
             <h1>Log In</h1>
             <label for="username">Username</label>
             <input id="username"
@@ -83,7 +92,15 @@
         </form>
 
 
-</div>
+    </div>
+
 </article>
+
+<footer id="pageFooter">
+    <span th:replace="fragments/fragments :: footer"></span>
+
+</footer>
+
+
 </body>
 </html>

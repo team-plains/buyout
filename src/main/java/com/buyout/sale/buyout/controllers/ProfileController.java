@@ -47,11 +47,15 @@ public class ProfileController {
         if(p!=null) loggedIn=true;
         m.addAttribute("loggedIn", loggedIn);
         BuyoutUser user = buyoutUserRepository.findById(id).get();
-        BuyoutUser currentUser = buyoutUserRepository.findByUsername(p.getName());
         boolean adminAccess = false;
         boolean hasProducts = false;
-        if (currentUser.getUsername().equals(user.getUsername())) {
-            adminAccess = true;
+
+        if(loggedIn) {
+            BuyoutUser currentUser = buyoutUserRepository.findByUsername(p.getName());
+            if (currentUser.getUsername().equals(user.getUsername())) {
+                adminAccess = true;
+            }
+
         }
         m.addAttribute("user", user);
         if (user.getProfile().getProducts() != null) {
@@ -59,6 +63,7 @@ public class ProfileController {
             m.addAttribute("products", user.getProfile().getProducts());
         }
         m.addAttribute("hasProducts", hasProducts);
+        m.addAttribute("adminAccess", adminAccess);
 
         return "profile";
     }
@@ -67,5 +72,13 @@ public class ProfileController {
     public String aboutUs(){
         return "aboutus";
     }
+
+    @GetMapping("/compare")
+    public String compareProducts(){
+
+        return "compare.html";
+    }
+
+
 
 }
