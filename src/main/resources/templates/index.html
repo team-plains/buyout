@@ -46,7 +46,7 @@
                 <a href="#">Add to cart</a>
                 <a href="#">Add to wish list</a>
                 <hr><h5 th:text="${product.productName}" class="card-title"></h5>
-                <hr><h5 th:text="${product.getProfileUser.getUsername()}" class="card-title"></h5>
+                <hr><h5 th:text="${product.getProfileUser.getEmail()}" class="card-title"></h5>
                 <hr><h5 th:text="${product.getProfileUser.getId()}" class="card-title"></h5>
             <h5 th:text="'$' + ${product.productPrice}"></h5></div></div>
     </span>
