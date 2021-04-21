@@ -11,16 +11,18 @@ import java.util.ArrayList;
 public class CompareProduct {
     String comparedProductName;
     String comparedProductURL;
+    String catagory;
     int comparedProductPrice;
 
-    public CompareProduct(String comparedProductName, String comparedProductURL, int comparedProductPrice) {
-        this.comparedProductName = comparedProductName;
-        this.comparedProductURL = comparedProductURL;
-        this.comparedProductPrice = comparedProductPrice;
+    public CompareProduct(String name, String image, int regularPrice, String categoryId) {
+        this.catagory = categoryId;
+        this.comparedProductName = name;
+        this.comparedProductURL = image;
+        this.comparedProductPrice = regularPrice;
     }
 
 
-}
+    }
 
 
 
