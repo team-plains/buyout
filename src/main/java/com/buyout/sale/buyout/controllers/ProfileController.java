@@ -76,6 +76,7 @@ public class ProfileController {
 
     @GetMapping("/compare")
     public String compareProducts(){
+// need these params: loggedIn , hasProducts , productClickedOn , bbProducts (bbProducts needs .url param)
 
         return "compare.html";
     }
