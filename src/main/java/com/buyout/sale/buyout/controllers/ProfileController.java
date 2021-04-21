@@ -64,6 +64,7 @@ public class ProfileController {
         }
         m.addAttribute("hasProducts", hasProducts);
         m.addAttribute("adminAccess", adminAccess);
+        m.addAttribute("userid",user.getId());
 
         return "profile";
     }
