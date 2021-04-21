@@ -50,9 +50,11 @@ body {
   float:left;
   height:80px;
 }
-#sitelogo h1{
+.sitelogo{
   font-family: 'Lexend', sans-serif;
-  margin-top: .6em;
+  margin-top: 20px;
+  font-size: 2em;
+  display: inline-block;
 }
 /* Stack the layout on small devices/viewports. */
 /* @media all and (max-width: 575px) {
@@ -105,7 +107,7 @@ body {
 
 /* -----------------signup form --------------------- */
 
-/* Button used to open the contact form */
+/* Button used to open the  form */
 .open-button {
   background-color: rgb(30, 174, 75);
   color: white;
@@ -167,13 +169,49 @@ body {
 }
 
 
-.dupeforms{
-
-  display: block;
-  margin: 20px;
+.formh2{
+  font-size: 1.2em;
 }
-.dupeforms h2{
-  font-size: x-large;
+
+.mainformcontainer {
+  max-width: 300px;
+  padding: 10px;
+  background-color: white;
+  box-shadow: 0px 15px 35px -5px rgba(50, 88, 130, 0.32);
+  border-radius: 15px;
+
+}
+
+.mainformcontainer input[type=text], .mainformcontainer input[type=password], .mainformcontainer input[type=email] {
+  width: 90%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  border: none;
+  background: #f1f1f1;
+}
+
+.mainformcontainer input[type=text]:focus, .mainformcontainer input[type=password]:focus, .mainformcontainer input[type=email]:focus {
+  background-color: #ddd;
+  outline: none;
+}
+
+.mainformcontainer .btn {
+  background-color: #4CAF50;
+  color: white;
+  padding: 16px 20px;
+  border: none;
+  cursor: pointer;
+  margin:10px auto 10px auto;
+  opacity: 0.8;
+  display: block;
+  width: 70%;
+}
+.dupeformbox {
+  display: inline;
+}
+
+.mainformcontainer h1{
+  font-size: 2em;
 }
 
 /* ------------- nav filters ----------- */
@@ -268,7 +306,14 @@ body {
   border-top-right-radius: 15px;
 }
 
+.productdetails span{
+  visibility: hidden;
+  color: white;
 
+}
+.product-image:hover > .productdetails > span {
+  visibility: visible;
+}
 
 /* --------------------*/
 
@@ -308,18 +353,18 @@ body {
 }
 
 .sellbutton {
+  display: inline;
+}
+.sellbutton button{
   background-color: #4CAF50;
   color: white;
   padding: 10px;
   margin: 0 10px 10px 0;
-
   border: none;
   cursor: pointer;
   text-decoration: none;
-  /*margin:10px auto 10px auto;*/
   opacity: 0.8;
-  display: inline;
-  /*width: 70%;*/
+
 }
 
 
@@ -330,9 +375,11 @@ nav {
   padding: 10px;
 
 }
-nav h2 {
+.sidebarmain {
+  font-size: 1.5em;
   margin-bottom: 10px;
 }
+
 .filters{
   margin-top: 100px;
 }
