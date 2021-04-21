@@ -81,6 +81,7 @@ public class BuyoutUserControllers {
             List<Product> currentCart=user.getProfile().getCart();
 
             m.addAttribute("user",user.getProfile());
+            m.addAttribute("userid",user.getId());
 //           m.addAttribute("cart",user.getProfile().getCart());
             m.addAttribute("cart",currentCart);
 
@@ -143,6 +144,7 @@ public class BuyoutUserControllers {
             BuyoutUser user = buyoutUserRepository.findByUsername(p.getName());
             m.addAttribute("email",user.getProfile().getEmail());
             m.addAttribute("user",user.getProfile());
+            m.addAttribute("userid",user.getId());
         }
         boolean loggedIn=isLoggedIn(p);
         m.addAttribute("loggedIn", loggedIn);

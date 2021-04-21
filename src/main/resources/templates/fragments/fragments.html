@@ -9,7 +9,7 @@
 <!--TOP BAR SELL ITEM BUTTON ------------->
 <span class="topbarsellbutton" th:fragment="topbarsellbutton">
     <form action="/addproduct" name="addproduct" method="GET" class="sellbutton">
-        <button type="submit" >Sell A Product</button>
+        <button type="submit">Sell A Product</button>
     </form>
 
 </span>
@@ -25,11 +25,13 @@
 </span>
 
 <span class="topbarprofilebutton" th:fragment="topbarprofilebutton">
-    <form th:if="${loggedIn}" th:action="'/profile/'+${user.getId()}" method="GET" class="sellbutton">
+
+    <form th:if="${loggedIn}" th:action="'/profile/'+ ${userid}" method="GET" class="sellbutton">
+
 <!--    <form th:action="'/profile/'+${userprofileid}" method="GET" class="sellbutton">-->
 
-<!--    <a th:href="@{/profile/{id}(id=${userprofileid})}"  class="sellbutton"></a>-->
-    <button type="submit" >View Your Profile</button></form>
+        <!--    <a th:href="@{/profile/{id}(id=${userprofileid})}"  class="sellbutton"></a>-->
+    <button type="submit">View Your Profile</button></form>
 </span>
 <!--TOP BAR IF GUEST -------------------------->
 <span class="topbarguest" th:fragment="topbarguest">
@@ -91,22 +93,20 @@
         function openSignupForm() {
             document.getElementById("signupForm").style.display = "block";
         }
+
         function closeSignupForm() {
             document.getElementById("signupForm").style.display = "none";
         }
+
         function openLoginForm() {
             document.getElementById("loginForm").style.display = "block";
         }
+
         function closeLoginForm() {
             document.getElementById("loginForm").style.display = "none";
         }
     </script>
 </span>
-
-
-
-
-
 
 
 <!----------------------SIDEBAR---------------------->
@@ -117,7 +117,7 @@
             <h3>Item Keyword</h3>
             <form class="login" name="filtersearch" action="/search" method="POST">
                 <input type="text" placeholder="Mario Bros" name="productkeyword">
-                <button class="filterbutton"  type="submit">Search</button>
+                <button class="filterbutton" type="submit">Search</button>
             </form>
         </section>
 
@@ -130,7 +130,7 @@
             <h3>Item Keyword</h3>
             <form class="login" name="filtersearch" action="/search" method="POST">
                 <input type="text" placeholder="Mario Bros" name="productkeyword">
-                <button class="filterbutton"  type="submit">Search</button>
+                <button class="filterbutton" type="submit">Search</button>
             </form>
         </section>
     </nav>
