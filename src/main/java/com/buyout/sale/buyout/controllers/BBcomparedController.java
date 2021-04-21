@@ -15,26 +15,26 @@ public class BBcomparedController {
 
 
     //Method #1: java.net.HttpURLConnection
-    public static CompareProduct getAPIinfo
-
-    {
-        try {
-            String bbURL = ("https://api.bestbuy.com/v1/products");
-            URL url = new URL(bbURL);
-            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-
-            // Request setup
-            connection.setRequestMethod("GET");
-            connection.setConnectTimeout(5000);
-            connection.setReadTimeout(5000);
-            int status = connection.getResponseCode();
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-
-        }
-    }
+//    public static CompareProduct getAPIinfo
+//
+//    {
+//        try {
+//            String bbURL = ("https://api.bestbuy.com/v1/products");
+//            URL url = new URL(bbURL);
+//            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+//
+//            // Request setup
+//            connection.setRequestMethod("GET");
+//            connection.setConnectTimeout(5000);
+//            connection.setReadTimeout(5000);
+//            int status = connection.getResponseCode();
+//        } catch (MalformedURLException e) {
+//            e.printStackTrace();
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//
+//        }
+//    }
 }
 
 

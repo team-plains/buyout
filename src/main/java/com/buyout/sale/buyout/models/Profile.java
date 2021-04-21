@@ -24,10 +24,12 @@ public class Profile {
     @OneToMany(mappedBy = "profileCart", cascade = CascadeType.ALL, orphanRemoval = true,fetch = FetchType.LAZY)
     private Set<Product> cart = new HashSet<>();
 
+    @OneToMany(mappedBy = "profileSavedItems", cascade = CascadeType.ALL,orphanRemoval = true, fetch = FetchType.LAZY)
+    List<Product> savedItems;
 
 //    List<Product> pastPurchased;
 //    List<Review> reviews;
-//    List<Product> savedItems;
+
 
     @OneToOne
     @JoinColumn(name="profile_id")
@@ -81,5 +83,25 @@ public class Profile {
 
     public void setProfile(BuyoutUser profile) {
         this.profile = profile;
+    }
+
+    public List<Product> getSavedItems() {
+        return savedItems;
+    }
+
+    public void setSavedItems(List<Product> savedItems) {
+        this.savedItems = savedItems;
+    }
+
+    @Override
+    public String toString() {
+        return "Profile{" +
+                "id=" + id +
+                ", email='" + email + '\'' +
+                ", products=" + products +
+                ", cart=" + cart +
+                ", savedItems=" + savedItems +
+                ", profile=" + profile +
+                '}';
     }
 }
