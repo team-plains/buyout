@@ -1,2 +1,46 @@
-package com.buyout.sale.buyout.controllers;public class SavedListController {
+package com.buyout.sale.buyout.controllers;
+
+import com.buyout.sale.buyout.models.BuyoutUser;
+import com.buyout.sale.buyout.models.Product;
+import com.buyout.sale.buyout.models.Profile;
+import com.buyout.sale.buyout.repository.BuyoutUserRepository;
+import com.buyout.sale.buyout.repository.ProductRepository;
+import com.buyout.sale.buyout.repository.ProfileRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.servlet.view.RedirectView;
+
+import java.security.Principal;
+import java.util.List;
+
+@Controller
+public class SavedListController {
+
+    @Autowired
+    BuyoutUserRepository buyoutUserRepository;
+
+    @Autowired
+    ProductRepository productRepository;
+
+    @Autowired
+    ProfileRepository profileRepository;
+
+
+    @PutMapping("/saveitems/{id}")
+    public RedirectView saveItem(@PathVariable long id, Principal p){
+
+        BuyoutUser user = buyoutUserRepository.findByUsername(p.getName());
+        Profile profile = profileRepository.findByEmail(user.getProfile().getEmail());
+        Product product = productRepository.findById(id).get();
+
+        List<Product> currentSavedItems = profile.getSavedItems();
+        currentSavedItems.add(product);
+        profile.setSavedItems(currentSavedItems);
+        profileRepository.save(profile);
+        return new RedirectView("/dummy");
+    }
+
+
 }
