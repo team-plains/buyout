@@ -35,7 +35,7 @@ public class ProfileController {
         Product newProduct = new Product(productName, productImage, productDescription, productPrice, userProfile);
         currentProducts.add(newProduct);
         userProfile.setProducts(currentProducts);
-
+        // save it to the profile repoistory since that has access to the  relationship between the profile and products
         profileRepository.save(userProfile);
         return new RedirectView("/");
     }

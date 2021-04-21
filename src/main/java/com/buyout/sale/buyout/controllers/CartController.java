@@ -84,9 +84,8 @@ public class CartController {
             Profile profileUser = profileRepository.findByEmail(user.getProfile().getEmail());
 
             System.out.println("This is the current user: "+user);
-
             product.setProfileCart(user.getProfile());
-
+            System.out.println("Testing"+product.getProfileUser().getProfile().getUsername());
             productRepository.save(product);
 
             return new RedirectView("/dummy");

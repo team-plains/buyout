@@ -17,6 +17,8 @@ public class Product {
     @Column(columnDefinition = "Text")
     String productDescription;
 
+    String category;
+
     double productPrice;
     boolean productSold =false;
     boolean productCheckout =false;
@@ -28,6 +30,12 @@ public class Product {
     @ManyToOne
     @JoinColumn(name = "profile_id")
     Profile profileCart;
+
+    @ManyToOne
+    @JoinColumn(name = "saved_by_id")
+    Profile profileSavedItems;
+
+
 
     public Product(String productName, String productImage, String productDescription, double productPrice, Profile profileUser) {
         this.productName = productName;
@@ -111,6 +119,23 @@ public class Product {
 
     public void setProfileCart(Profile profileCart) {
         this.profileCart = profileCart;
+    }
+
+    public Profile getProfileSavedItems() {
+        return profileSavedItems;
+    }
+
+    public void setProfileSavedItems(Profile profileSavedItems) {
+        this.profileSavedItems = profileSavedItems;
+    }
+
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
     }
 
     @Override

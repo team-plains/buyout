@@ -1,20 +1,20 @@
-//package com.buyout.sale.buyout.controllers;
-//
-//import com.buyout.sale.buyout.models.CompareProduct;
-//import com.google.gson.Gson;
-//import org.springframework.stereotype.Controller;
-//
-//import java.io.*;
-//import java.net.MalformedURLException;
-//import java.net.HttpURLConnection;
-//import java.net.URL;
-//import java.util.ArrayList;
-//@Controller
-//public class BBcomparedController {
-//    Gson gson = new Gson();
-//
-//
-//    //Method #1: java.net.HttpURLConnection
+package com.buyout.sale.buyout.controllers;
+
+import com.buyout.sale.buyout.models.CompareProduct;
+import com.google.gson.Gson;
+import org.springframework.stereotype.Controller;
+
+import java.io.*;
+import java.net.MalformedURLException;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.util.ArrayList;
+@Controller
+public class BBcomparedController {
+    Gson gson = new Gson();
+
+
+    //Method #1: java.net.HttpURLConnection
 //    public static CompareProduct getAPIinfo
 //
 //    {
@@ -35,7 +35,7 @@
 //
 //        }
 //    }
-//}
-//
-//
-//
+
+}
+
+
