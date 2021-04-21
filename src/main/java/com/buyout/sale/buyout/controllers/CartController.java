@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.servlet.view.RedirectView;
 
 import java.security.Principal;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
@@ -54,11 +55,18 @@ public class CartController {
             }
 
             BuyoutUser user = buyoutUserRepository.findByUsername(p.getName());
-            System.out.println("This is current user in dummy route : "+user);
+
+//            System.out.println("This is current user in dummy route : "+user);
+
             List<Product> currentProducts = user.getProfile().getProducts();
-            System.out.println("The size of the users own products "+currentProducts.size());
-            Set<Product> currentCart=user.getProfile().getCart();
-            System.out.println("this is the users cart! "+currentCart);
+
+//            System.out.println("The size of the users own products "+currentProducts.size());
+
+            ArrayList<Product> currentCart=user.getProfile().getCart();
+
+            System.out.println(currentCart.contains(products.get(0)));
+            System.out.println("this is the users cart! "+currentCart.size());
+
             m.addAttribute("cart",currentCart);
 
 
@@ -85,7 +93,7 @@ public class CartController {
 
             System.out.println("This is the current user: "+user);
             product.setProfileCart(user.getProfile());
-            System.out.println("Testing"+product.getProfileUser().getProfile().getUsername());
+            System.out.println("Testing "+product.getProfileUser().getProfile().getUsername());
             productRepository.save(product);
 
             return new RedirectView("/dummy");
