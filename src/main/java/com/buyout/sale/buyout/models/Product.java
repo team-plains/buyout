@@ -145,10 +145,10 @@ public class Product {
                 ", productName='" + productName + '\'' +
                 ", productImage='" + productImage + '\'' +
                 ", productDescription='" + productDescription + '\'' +
+                ", category='" + category + '\'' +
                 ", productPrice=" + productPrice +
                 ", productSold=" + productSold +
                 ", productCheckout=" + productCheckout +
-                ", profileUser=" + profileUser +
                 '}';
     }
 }

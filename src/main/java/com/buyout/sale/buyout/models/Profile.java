@@ -2,6 +2,7 @@ package com.buyout.sale.buyout.models;
 
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -22,7 +23,7 @@ public class Profile {
 
 
     @OneToMany(mappedBy = "profileCart", cascade = CascadeType.ALL, orphanRemoval = true,fetch = FetchType.LAZY)
-    private Set<Product> cart = new HashSet<>();
+    private ArrayList<Product> cart = new ArrayList<>();
 
     @OneToMany(mappedBy = "profileSavedItems", cascade = CascadeType.ALL,orphanRemoval = true, fetch = FetchType.LAZY)
     List<Product> savedItems;
@@ -68,12 +69,11 @@ public class Profile {
         this.products = products;
     }
 
-
-    public Set<Product> getCart() {
+    public ArrayList<Product> getCart() {
         return cart;
     }
 
-    public void setCart(Set<Product> cart) {
+    public void setCart(ArrayList<Product> cart) {
         this.cart = cart;
     }
 
