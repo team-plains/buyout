@@ -62,7 +62,7 @@ public class CartController {
 
 //            System.out.println("The size of the users own products "+currentProducts.size());
 
-            ArrayList<Product> currentCart=user.getProfile().getCart();
+            List<Product> currentCart=user.getProfile().getCart();
 
             System.out.println(currentCart.contains(products.get(0)));
             System.out.println("this is the users cart! "+currentCart.size());
