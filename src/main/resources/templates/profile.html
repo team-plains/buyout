@@ -41,10 +41,10 @@
         <div class="card" style="width: 18rem;">
             <img th:src="${product.productImage}" class="product-image">
             <div class="card-body">
-                <a href="#">Add to cart</a>
-                <a href="#">Add to wish list</a>
-                <hr><h5 th:text="${product.productName}" class="card-title"></h5>
-            <h5 th:text="'$' + ${product.productPrice}"></h5></div></div>
+                <a href="#"><img src="/img/cart.png" class="product-icons">Add to cart</a>
+                <a href="#"><img src="/img/like.png" class="product-icons">Add to wish list</a>
+                <hr><h5 th:text="${product.productName}" class="card-body-seller"></h5>
+            <h5 th:text="'$' + ${product.productPrice}" class="card-body-price"></h5></div></div>
 
     </span>
 
