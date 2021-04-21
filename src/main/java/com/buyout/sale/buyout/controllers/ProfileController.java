@@ -4,6 +4,7 @@ import com.buyout.sale.buyout.models.BuyoutUser;
 import com.buyout.sale.buyout.models.Product;
 import com.buyout.sale.buyout.models.Profile;
 import com.buyout.sale.buyout.repository.BuyoutUserRepository;
+import com.buyout.sale.buyout.repository.ProductRepository;
 import com.buyout.sale.buyout.repository.ProfileRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -23,6 +24,10 @@ public class ProfileController {
 
     @Autowired
     ProfileRepository profileRepository;
+
+    @Autowired
+    ProductRepository productRepository;
+
 
     @PostMapping("/addproduct")
     public RedirectView newProduct(String productName, double productPrice, String productDescription, String productImage, Principal p) {
@@ -74,13 +79,37 @@ public class ProfileController {
         return "aboutus";
     }
 
-    @GetMapping("/compare")
-    public String compareProducts(){
+    @GetMapping("/compare/{id}")
+    public String compareProducts(@PathVariable long id, Principal p, Model m){
 // need these params: loggedIn , hasProducts , productClickedOn , bbProducts (bbProducts needs .url param)
+        boolean hasProducts= true;
+        Product product = productRepository.findById(id).get();
+        if(product==null){
+            hasProducts=false;
+        }else{
+            m.addAttribute("productClickedOn",product);
+        }
+        m.addAttribute("hasProducts",hasProducts);
+        boolean loggedIn=isLoggedIn(p);
+        m.addAttribute("loggedIn", loggedIn);
+        if(loggedIn){
+            BuyoutUser user = buyoutUserRepository.findByUsername(p.getName());
+            List<Product> currentCart=user.getProfile().getCart();
 
+            m.addAttribute("user",user.getProfile());
+            m.addAttribute("userid",user.getId());
+            m.addAttribute("cart",currentCart);
+            m.addAttribute("email",user.getProfile().getEmail());
+// here's where to put the bb api biznezz. -----------------------------------------------
+// List<Product> bbProducts =
+//            m.addAttribute("bbProducts", bbProducts);
+        }
         return "compare.html";
     }
 
-
+    public Boolean isLoggedIn(Principal p){
+        if (p != null) return true;
+        else return false;
+    }
 
 }
