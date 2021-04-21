@@ -145,7 +145,6 @@ public class BuyoutUserControllers {
             m.addAttribute("email",user.getProfile().getEmail());
             m.addAttribute("user",user.getProfile());
             m.addAttribute("userid",user.getId());
-
         }
         boolean loggedIn=isLoggedIn(p);
         m.addAttribute("loggedIn", loggedIn);

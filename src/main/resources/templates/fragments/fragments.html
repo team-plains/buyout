@@ -25,7 +25,9 @@
 </span>
 
 <span class="topbarprofilebutton" th:fragment="topbarprofilebutton">
+
     <form th:if="${loggedIn}" th:action="'/profile/'+ ${userid}" method="GET" class="sellbutton">
+
 <!--    <form th:action="'/profile/'+${userprofileid}" method="GET" class="sellbutton">-->
 
         <!--    <a th:href="@{/profile/{id}(id=${userprofileid})}"  class="sellbutton"></a>-->
