@@ -20,6 +20,7 @@ import org.springframework.web.servlet.view.RedirectView;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.security.Principal;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
@@ -77,7 +78,7 @@ public class BuyoutUserControllers {
         if(loggedIn){
            BuyoutUser user = buyoutUserRepository.findByUsername(p.getName());
             List<Product> currentProducts = user.getProfile().getProducts();
-            Set<Product> currentCart=user.getProfile().getCart();
+            List<Product> currentCart=user.getProfile().getCart();
 
             m.addAttribute("user",user.getProfile());
 //           m.addAttribute("cart",user.getProfile().getCart());
@@ -141,6 +142,7 @@ public class BuyoutUserControllers {
         if(p!=null){
             BuyoutUser user = buyoutUserRepository.findByUsername(p.getName());
             m.addAttribute("email",user.getProfile().getEmail());
+            m.addAttribute("user",user.getProfile());
         }
         boolean loggedIn=isLoggedIn(p);
         m.addAttribute("loggedIn", loggedIn);

@@ -23,7 +23,7 @@ public class Profile {
 
 
     @OneToMany(mappedBy = "profileCart", cascade = CascadeType.ALL, orphanRemoval = true,fetch = FetchType.LAZY)
-    private ArrayList<Product> cart = new ArrayList<>();
+    private List<Product> cart;
 
     @OneToMany(mappedBy = "profileSavedItems", cascade = CascadeType.ALL,orphanRemoval = true, fetch = FetchType.LAZY)
     List<Product> savedItems;
@@ -69,11 +69,11 @@ public class Profile {
         this.products = products;
     }
 
-    public ArrayList<Product> getCart() {
+    public List<Product> getCart() {
         return cart;
     }
 
-    public void setCart(ArrayList<Product> cart) {
+    public void setCart(List<Product> cart) {
         this.cart = cart;
     }
 
