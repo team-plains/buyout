@@ -88,7 +88,7 @@ public class CartController {
             System.out.println("Testing"+product.getProfileUser().getProfile().getUsername());
             productRepository.save(product);
 
-            return new RedirectView("/dummy");
+            return new RedirectView("/");
     }
 
 }

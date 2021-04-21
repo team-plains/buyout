@@ -21,6 +21,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.security.Principal;
 import java.util.List;
+import java.util.Set;
 
 //@RestController
 @Controller
@@ -75,7 +76,15 @@ public class BuyoutUserControllers {
         m.addAttribute("loggedIn", loggedIn);
         if(loggedIn){
            BuyoutUser user = buyoutUserRepository.findByUsername(p.getName());
-           m.addAttribute("user",user.getProfile());
+            List<Product> currentProducts = user.getProfile().getProducts();
+            Set<Product> currentCart=user.getProfile().getCart();
+
+            m.addAttribute("user",user.getProfile());
+//           m.addAttribute("cart",user.getProfile().getCart());
+            m.addAttribute("cart",currentCart);
+
+            m.addAttribute("email",user.getProfile().getEmail());
+//            System.out.println(user.getProfile());
 //           m.addAttribute("userprofileid", user.getProfile().getId());
 //            System.out.println(user.getProfile().getId());
         }
