@@ -251,11 +251,12 @@ body {
   font-size: large;
 }
 .card-body a {
+  display: inline-block;
   padding: 5px;
 }
 
 .card{
-  box-shadow: 0px 15px 35px -5px rgba(50, 88, 130, 0.32);
+  box-shadow: 10px 25px 45px -15px rgba(50, 88, 130, 0.32);
   border-radius: 15px;
   transition: transform .2s;
   margin:10px;
@@ -263,11 +264,9 @@ body {
 }
 
 
-
-
 .card-body{
-  padding: 10px;
-  margin-top: -80px;
+  padding: 5px;
+  margin-top: -190px;
   -webkit-transition: all 1s ease;
   -moz-transition: all 1s ease;
   -o-transition: all 1s ease;
@@ -276,11 +275,12 @@ body {
 
 .card-body a{
   visibility: hidden;
+  text-decoration: none;
 
 }
 .card-body span{
   visibility: hidden;
-
+  font-size: 1.2em;
 }
 
 .card:hover > .card-body{
@@ -293,17 +293,23 @@ body {
 
 .card:hover > .card-body > a{
   visibility: visible;
-
+  display:block;
 }
 
 .card:hover > .card-body > span{
   visibility: visible;
+  background-color: #fff;
+  color: black;
+  display: inline-block;
+  border-radius: 15px;
+  padding: 5px;
 
 }
 .product-image{
   width: 100%;
-  border-top-left-radius: 15px;
-  border-top-right-radius: 15px;
+  border-radius: 15px;
+  box-shadow: 0px 15px 35px -5px rgba(50, 88, 130, 0.32);
+
 }
 
 .productdetails span{
@@ -314,6 +320,26 @@ body {
 .product-image:hover > .productdetails > span {
   visibility: visible;
 }
+
+.card-body-seller{
+  color:rgb(68, 63, 63);
+}
+
+.card-body-price{
+  color: black;
+  float: right;
+  margin: 0;
+}
+
+
+
+.product-icons{
+  display:inline;
+  width:35px;
+  margin-top: 5px;
+}
+
+
 
 /* --------------------*/
 
@@ -420,4 +446,5 @@ input[type=checkbox]
 /* references */
 /* https://codepen.io/albertoleon/pen/jONyrvY product cards*/
 /* https://www.w3schools.com/howto/howto_js_popup_form.asp signup form dropdown*/
+
 
