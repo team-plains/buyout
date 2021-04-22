@@ -5,13 +5,14 @@ public class CompareProduct {
     double regularPrice;
     String name;
     String image;
+    String url;
 
 
-
-    public CompareProduct(String name, String image, int regularPrice) {
+    public CompareProduct(double regularPrice, String name, String image, String url) {
+        this.regularPrice = regularPrice;
         this.name = name;
         this.image = image;
-        this.regularPrice = regularPrice;
+        this.url = url;
     }
 
     public String getName() {
@@ -38,12 +39,21 @@ public class CompareProduct {
         this.regularPrice = regularPrice;
     }
 
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
     @Override
     public String toString() {
         return "CompareProduct{" +
-                "comparedProductName='" + name + '\'' +
-                ", comparedProductURL='" + image + '\'' +
-                ", comparedProductPrice=" + regularPrice +
+                "regularPrice=" + regularPrice +
+                ", name='" + name + '\'' +
+                ", image='" + image + '\'' +
+                ", url='" + url + '\'' +
                 '}';
     }
 }

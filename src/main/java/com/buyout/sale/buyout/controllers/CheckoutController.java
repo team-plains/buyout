@@ -19,17 +19,17 @@ import java.util.Map;
 
 @Controller
 public class CheckoutController {
-
-    @Value("${STRIPE_PUBLIC_KEY}")
-    public String stripePublicKey;
-
-    @RequestMapping("/checkout")
-    public String checkout(Model model) {
-        model.addAttribute("amount", 50 * 100); // in cents
-        model.addAttribute("stripePublicKey", stripePublicKey);
-        model.addAttribute("currency", ChargeRequest.Currency.USD);
-        return "checkout";
-    }
+//
+//    @Value("${STRIPE_PUBLIC_KEY}")
+//    public String stripePublicKey;
+//
+//    @RequestMapping("/checkout")
+//    public String checkout(Model model) {
+//        model.addAttribute("amount", 50 * 100); // in cents
+//        model.addAttribute("stripePublicKey", stripePublicKey);
+//        model.addAttribute("currency", ChargeRequest.Currency.USD);
+//        return "checkout";
+//    }
 
     }
 

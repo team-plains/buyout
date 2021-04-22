@@ -37,7 +37,6 @@ public class SavedListController {
         Product product = productRepository.findById(id).get();
 
         product.setProfileSavedItems(profile);
-        profile.getSavedItems();
         productRepository.save(product);
         return new RedirectView("/profile/" + user.getId());
     }
