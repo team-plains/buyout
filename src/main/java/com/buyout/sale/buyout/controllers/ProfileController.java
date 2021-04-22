@@ -30,14 +30,15 @@ public class ProfileController {
 
 
     @PostMapping("/addproduct")
-    public RedirectView newProduct(String productName, double productPrice, String productDescription, String productImage, Principal p) {
+    public RedirectView newProduct(String productName, double productPrice, String productDescription, String productImage, Principal p, String Category) {
         BuyoutUser user = buyoutUserRepository.findByUsername(p.getName());
 
         Profile userProfile = profileRepository.findByEmail(user.getProfile().getEmail());
-
+        System.out.println(Category);
 
         List<Product> currentProducts = userProfile.getProducts();
         Product newProduct = new Product(productName, productImage, productDescription, productPrice, userProfile);
+        newProduct.setCategory(Category);
         currentProducts.add(newProduct);
         userProfile.setProducts(currentProducts);
         // save it to the profile repoistory since that has access to the  relationship between the profile and products
@@ -54,7 +55,11 @@ public class ProfileController {
         BuyoutUser user = buyoutUserRepository.findById(id).get();
         boolean adminAccess = false;
         boolean hasProducts = false;
-
+        boolean hasWishListItems = false;
+        if(user.getProfile().getSavedItems() != null){
+            hasWishListItems=true;
+        }
+        m.addAttribute("hasWishListItems", hasWishListItems);
         if(loggedIn) {
             BuyoutUser currentUser = buyoutUserRepository.findByUsername(p.getName());
             if (currentUser.getUsername().equals(user.getUsername())) {
