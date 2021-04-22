@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Buyout.sale</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/reset.css">
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<header id="sitelogo">
+    <span th:replace="fragments/fragments :: logo"></span>
+
+</header>
+
+<header id="header1">
+    <span th:replace="fragments/fragments :: topbarsellbutton"></span>
+    <span th:if="${loggedIn}" th:replace="fragments/fragments :: topbarprofilebutton"></span>
+</header>
+
+<header id="header2">
+    <span th:if="${loggedIn}" th:replace="fragments/fragments :: topbarlogout"></span>
+    <span th:if="${!loggedIn}" th:replace="fragments/fragments :: topbarguest"></span>
+
+</header>
+
+<nav id="mainNav">
+    <span th:replace="fragments/fragments :: sidebarmain"></span>
+
+</nav>
+
+<article id="mainArticle">
+    <!------------------------------------------product clicked on-->
+    <span th:if="${hasProducts}">
+        <div class="card" style="width: 18rem;">
+
+            <img th:src="${productClickedOn.productImage}" class="product-image">
+
+            <div class="card-body">
+
+                <span th:text="${productClickedOn.productDescription}"></span>
+                <span th:if="${loggedIn}">
+<!--                <span th:if="${!cart.contains(product)}">-->
+                <form th:action="'/addtocart/' + ${productClickedOn.getId()} + '?_method=PUT'" method="POST"><button><img src="/img/cart.png" class="product-icons">Add to Cart</button></form>
+                    </span>
+
+                <a href="#"><img src="/img/like.png" class="product-icons">Add to wish list</a>
+                <hr><h5 th:text="${productClickedOn.productName}" class="card-title"></h5>
+                <h5 th:text="${productClickedOn.getProfileUser.getEmail()}" class="card-title"></h5>
+                <a th:href="'/profile/' + ${product.getProfileUser.getId()} ">  <h5 th:text="${productClickedOn.getProfileUser.getProfile.getUsername}" class="card-body-seller"></h5></a>
+
+                <!--                <hr><h5 th:text="${product.getProfileUser.getId()}" class="card-title"></h5>-->
+            <h5 th:text="'$' + ${productClickedOn.productPrice}" class="card-body-price"></h5></div></div>
+    </span>
+
+    <!-----------------------------products from api-->
+    <span th:if="${hasProducts}" th:each="product : ${bbProducts}">
+        <div class="card" style="width: 18rem;">
+
+            <img th:src="${product.productImage}" class="product-image">
+
+            <div class="card-body">
+                    <span th:text="${product.productDescription}"></span>
+                    <span th:if="${loggedIn}">
+                    <a th:href="${product.url}" target="_blank"><img src="cart.png" class="product-icons"><button>Buy From Merchant</button></a>
+                </span>
+                <hr><h5 th:text="${product.productName}" class="card-title"></h5>
+            <h5 th:text="'$' + ${product.productPrice}"></h5></div></div>
+    </span>
+
+</article>
+
+<footer id="pageFooter">
+    <span th:replace="fragments/fragments :: footer"></span>
+</footer>
+
+
+</body>
+</html>
