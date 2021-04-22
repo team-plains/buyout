@@ -8,6 +8,7 @@ import com.buyout.sale.buyout.repository.ProductRepository;
 import com.buyout.sale.buyout.repository.ProfileRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.servlet.view.RedirectView;
@@ -38,7 +39,7 @@ public class SavedListController {
         product.setProfileSavedItems(profile);
         profile.getSavedItems();
         productRepository.save(product);
-        return new RedirectView("/dummy");
+        return new RedirectView("/profile/" + user.getId());
     }
 
 

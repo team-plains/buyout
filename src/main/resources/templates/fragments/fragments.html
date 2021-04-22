@@ -16,6 +16,7 @@
 
 <!--TOP BAR IF LOGGED IN------------------->
 
+
 <span class="topbarlogout" th:fragment="topbarlogout">
         <span th:if="${loggedIn}">
             <form class="logout" action="/logout">
@@ -32,6 +33,7 @@
 
         <!--    <a th:href="@{/profile/{id}(id=${userprofileid})}"  class="sellbutton"></a>-->
     <button type="submit">View Your Profile</button></form>
+
 </span>
 <!--TOP BAR IF GUEST -------------------------->
 <span class="topbarguest" th:fragment="topbarguest">
@@ -111,6 +113,19 @@
 
 <!----------------------SIDEBAR---------------------->
 <span class="sidebarmain" th:fragment="sidebarmain">
+    <section>
+        <span th:if="${loggedIn}">
+            <form class="form-container-cart" action="/cart">
+            <button class="open-button" type="submit">View Shopping Cart</button>
+            </form>
+        </span>
+        </section>
+</span>
+
+
+
+
+<span class="sidebarmain" th:fragment="sidebarsearch">
 
         <section>
             <h2>Find A Product</h2>
@@ -125,7 +140,7 @@
 <!--SIDEBAR ON ADD NEW PRODUCT-->
 <span class="sidebarmain" th:fragment="sidebaraddnew">
 <label for="Category">Choose a category:</label>
-<select name="Category" id="Category" form="addproductform">
+<select name="Category" id="Category" form="addproductform" required>
     <option value="(categoryPath.id=pcmcat209400050001)">Cell Phones</option>
     <option value="(categoryPath.id=abcat0501000)">Computers</option>
     <option value="(categoryPath.id=abcat0401000)">Digital Cameras</option>
