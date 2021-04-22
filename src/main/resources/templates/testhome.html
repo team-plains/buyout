@@ -18,6 +18,9 @@
     <form th:action="'/addtocart/'+ ${product.id}+'?_method=PUT'" method="POST">
         <button value="add cart" type="submit">Add To cart!!!!!#@!@#!@</button>
     </form>
+    <form th:action="'/saveitems/'+ ${product.id}+'?_method=PUT'" method="POST">
+        <button value="add cart" type="submit">SAVE!!!!!#@!@#!@</button>
+    </form>
 </div>
 
 <div th:if="${email}" class="add-product">
@@ -56,6 +59,18 @@
     <div th:if="${cart.size()!=0}" th:each="item : ${cart}">
         <h4 th:text="${item.productName}"></h4>
         <img th:src="${item.productImage}"/>
+    </div>
+    <form th:if="${cart.size()!=0}" th:action="'/emptycart'+ '?_method=DELETE'" method="POST">
+        <button type="submit" >Empty cart</button>
+    </form>
+</div>
+
+<div th:if="${email}">
+    <h2>SAVED ITEMS############################### ></h2>
+    <h1 th:if="${saveitems.size()==0}">No Items In Cart</h1>
+    <div th:if="${saveitems.size()!=0}" th:each="saveitem : ${saveitems}">
+        <h4 th:text="${saveitem.productName}"></h4>
+        <img th:src="${saveitem.productImage}"/>
     </div>
 </div>
 

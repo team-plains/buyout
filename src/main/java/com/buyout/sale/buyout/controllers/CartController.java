@@ -9,10 +9,7 @@ import com.buyout.sale.buyout.repository.ProfileRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.view.RedirectView;
 
 import java.security.Principal;
@@ -61,12 +58,13 @@ public class CartController {
             List<Product> currentProducts = user.getProfile().getProducts();
 
 //            System.out.println("The size of the users own products "+currentProducts.size());
-
+            System.out.println("THIS IS THE PERSON OWN MADE PRODUCtsssssssss TEST"+currentProducts.size());
             List<Product> currentCart=user.getProfile().getCart();
-
-            System.out.println(currentCart.contains(products.get(0)));
+            List<Product> currentSavedItems = user.getProfile().getSavedItems();
+            System.out.println(currentSavedItems);
             System.out.println("this is the users cart! "+currentCart.size());
 
+            m.addAttribute("saveitems",currentSavedItems);
             m.addAttribute("cart",currentCart);
 
 
@@ -99,4 +97,18 @@ public class CartController {
             return new RedirectView("/");
     }
 
+    @DeleteMapping("/emptycart")
+    public RedirectView emptyCarts(Principal p){
+        if(p!=null){
+            BuyoutUser user = buyoutUserRepository.findByUsername(p.getName());
+            Profile profile = user.getProfile();
+//            System.out.println("This is the profile inside of empty cart  >>>>>>>>>%%$$$$#### "+profile);
+           profile.getCart().forEach(Product::removeItemFromProfileCart);
+
+            buyoutUserRepository.save(user);
+
+        }
+
+        return new RedirectView("/dummy");
+    }
 }

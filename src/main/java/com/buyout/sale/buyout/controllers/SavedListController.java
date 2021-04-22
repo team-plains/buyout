@@ -32,13 +32,12 @@ public class SavedListController {
     public RedirectView saveItem(@PathVariable long id, Principal p){
 
         BuyoutUser user = buyoutUserRepository.findByUsername(p.getName());
-        Profile profile = profileRepository.findByEmail(user.getProfile().getEmail());
+        Profile profile = user.getProfile();
         Product product = productRepository.findById(id).get();
 
-        List<Product> currentSavedItems = profile.getSavedItems();
-        currentSavedItems.add(product);
-        profile.setSavedItems(currentSavedItems);
-        profileRepository.save(profile);
+        product.setProfileSavedItems(profile);
+        profile.getSavedItems();
+        productRepository.save(product);
         return new RedirectView("/dummy");
     }
 
