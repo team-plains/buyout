@@ -1,14 +1,19 @@
 package com.buyout.sale.buyout.controllers;
+import com.buyout.sale.buyout.models.CompareProduct;
+import com.google.gson.Gson;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.lang.reflect.Type;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.ProtocolException;
 import java.net.URL;
+import java.sql.Array;
+import java.util.Collection;
 
 @Controller
 public class BBcomparedController {
@@ -24,7 +29,7 @@ public class BBcomparedController {
 
 
         public static void getApiInformation() throws IOException {
-            BufferedReader reader;
+            BufferedReader reader = null;
             String line;
             StringBuffer responseContent = new StringBuffer();
             try {
@@ -49,15 +54,28 @@ public class BBcomparedController {
                     while ((line = reader.readLine()) != null) {
                         responseContent.append(line);
                     }
-                    reader.close();
+
                 }
-                System.out.println(responseContent.toString());
+                System.out.println("==========================" + responseContent );
             } catch (MalformedURLException e) {
                 e.printStackTrace();
             } catch (IOException e) {
                 e.printStackTrace();
 
-            }        }
+            }
+            Object compareObject[] = new Object[3];
+            Gson compareGson = new Gson();
+            compareObject[0] = compareGson.fromJson(reader, (Type) compareObject[0]);
+            System.out.println("==================" + compareObject);
+            System.out.println("==================" + compareGson);
+
+
+
+    }
+        class compareAPI{
+        public String compare;
+
+        }
 
     }
 
