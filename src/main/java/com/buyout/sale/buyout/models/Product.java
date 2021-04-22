@@ -151,4 +151,5 @@ public class Product {
                 ", productCheckout=" + productCheckout +
                 '}';
     }
+
 }
