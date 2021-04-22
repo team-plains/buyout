@@ -34,7 +34,7 @@
 <article id="mainArticle">
     <span th:if="${adminAccess}">
         <h2>Products on Your Wish List </h2>
-        <span th:if="${!hasWishListItems}" th:text="You currently have no items on your wish list."></span>
+        <span th:if="${!hasWishListItems}" th:text="You currently have no items in your wish list."></span>
         <span th:if="${hasWishListItems}" th:each="product : ${products}">
         <div class="card" style="width: 18rem;">
         <a th:href="'/compare/' + ${product.getId()}">
@@ -75,8 +75,8 @@
 
                                 <span th:text="${product.productDescription}"></span>
             </a>
-                <a href="#"><img src="/img/cart.png" class="product-icons">Add to cart</a>
-                <a href="#"><img src="/img/like.png" class="product-icons">Add to wish list</a>
+                <form th:action="'/addtocart/' + ${product.getId()} + '?_method=PUT'" method="POST"><button><img src="/img/cart.png" class="product-icons">Add to cart</button></form>
+                <a th:href="'/saveitems/' + ${product.getId}"><img src="/img/like.png" class="product-icons">Add to wish list</a>
                 <hr><h5 th:text="${product.productName}" class="card-body-seller"></h5>
             <h5 th:text="'$' + ${product.productPrice}" class="card-body-price"></h5></div></div>
 

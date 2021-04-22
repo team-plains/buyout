@@ -46,7 +46,7 @@
                 <form th:action="'/addtocart/' + ${product.getId()} + '?_method=PUT'" method="POST"><button><img src="/img/cart.png" class="product-icons">Add to Cart</button></form>
                     </span>
 
-                <a href="/saveitems/${id}"><img src="/img/like.png" class="product-icons">Add to wish list</a>
+                <a th:href="'/saveitems/' + ${product.getId}"><img src="/img/like.png" class="product-icons">Add to wish list</a>
                 <hr><h5 th:text="${product.productName}" class="card-title"></h5>
                 <h5 th:text="${product.getProfileUser.getEmail()}" class="card-title"></h5>
              <a th:href="'/profile/' + ${product.getProfileUser.getId()} ">
