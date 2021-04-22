@@ -67,7 +67,7 @@
 
 <div th:if="${email}">
     <h2>SAVED ITEMS############################### ></h2>
-    <h1 th:if="${saveitems.size()==0}">No Items In Cart</h1>
+    <h1 th:if="${saveitems.size()==0}">No Saved Items</h1>
     <div th:if="${saveitems.size()!=0}" th:each="saveitem : ${saveitems}">
         <h4 th:text="${saveitem.productName}"></h4>
         <img th:src="${saveitem.productImage}"/>
