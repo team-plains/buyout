@@ -29,13 +29,13 @@
 <nav id="mainNav">
     <h2 th:if="${loggedIn}" th:text="'Logged in as: '+ ${email}"></h2>
 
-    <span th:replace="fragments/fragments :: sidebarmain"></span>
-
+<!--    <span th:replace="fragments/fragments :: sidebarmain"></span>-->
+    <span th:replace="fragments/fragments :: sidebaraddnew"></span>
 </nav>
 
 <article id="mainArticle">
 <div th:if="${email}" class="add-product">
-    <form action="/addproduct" method="POST" class="product-form-container">
+    <form action="/addproduct" method="POST" class="product-form-container" id="addproductform">
         <h1>Add Product</h1>
         <label for="productName">Product Name</label>
         <input id="productName"
