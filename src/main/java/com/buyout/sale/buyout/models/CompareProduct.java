@@ -1,48 +1,52 @@
 package com.buyout.sale.buyout.models;
 
-import com.google.gson.Gson;
-
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import java.io.*;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.util.ArrayList;
-
-
 
 public class CompareProduct {
-    String comparedProductName;
-    String comparedProductURL;
-    String category;
-    int comparedProductPrice;
+    double regularPrice;
+    String name;
+    String image;
 
-    public CompareProduct(String name, String image, int regularPrice, String categoryId) {
-        this.category = categoryId;
-        this.comparedProductName = name;
-        this.comparedProductURL = image;
-        this.comparedProductPrice = regularPrice;
+
+
+    public CompareProduct(String name, String image, int regularPrice) {
+        this.name = name;
+        this.image = image;
+        this.regularPrice = regularPrice;
     }
 
-    public String getComparedProductName() {
-        return comparedProductName;
+    public String getName() {
+        return name;
     }
 
-    public String getComparedProductURL() {
-        return comparedProductURL;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getCategory() {
-        return category;
+    public String getImage() {
+        return image;
     }
 
-    public int getComparedProductPrice() {
-        return comparedProductPrice;
+    public void setImage(String image) {
+        this.image = image;
     }
 
-    public CompareProduct(){}
-
+    public double getRegularPrice() {
+        return regularPrice;
     }
+
+    public void setRegularPrice(double regularPrice) {
+        this.regularPrice = regularPrice;
+    }
+
+    @Override
+    public String toString() {
+        return "CompareProduct{" +
+                "comparedProductName='" + name + '\'' +
+                ", comparedProductURL='" + image + '\'' +
+                ", comparedProductPrice=" + regularPrice +
+                '}';
+    }
+}
 
 
 

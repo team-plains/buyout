@@ -1,5 +1,9 @@
 package com.buyout.sale.buyout.models;
 
+import java.util.ArrayList;
+
 public class BBjsonDeserializer {
-    public CompareProduct[] products;
+    public ArrayList<CompareProduct> products;
+
+
 }
