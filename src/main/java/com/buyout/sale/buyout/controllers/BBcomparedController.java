@@ -1,4 +1,5 @@
 package com.buyout.sale.buyout.controllers;
+import com.buyout.sale.buyout.models.BBjsonDeserializer;
 import com.buyout.sale.buyout.models.CompareProduct;
 import com.google.gson.Gson;
 import org.springframework.stereotype.Controller;
@@ -13,6 +14,7 @@ import java.net.MalformedURLException;
 import java.net.ProtocolException;
 import java.net.URL;
 import java.sql.Array;
+import java.util.ArrayList;
 import java.util.Collection;
 
 @Controller
@@ -63,10 +65,11 @@ public class BBcomparedController {
                 e.printStackTrace();
 
             }
-            Object compareObject[] = new Object[3];
+//            Object compareObject[] = new Object[0];
             Gson compareGson = new Gson();
-            compareObject[0] = compareGson.fromJson(reader, (Type) compareObject[0]);
-            System.out.println("==================" + compareObject);
+//            CompareProduct[].class
+            BBjsonDeserializer results = compareGson.fromJson(reader, BBjsonDeserializer.class);
+            System.out.println("==================" + results.products[0].getComparedProductName());
             System.out.println("==================" + compareGson);
 
 
