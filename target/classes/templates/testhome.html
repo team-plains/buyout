@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<p>Hi world, logging works!!213421412412</p>
+<h1 th:if="${email}" th:text="'This is your email!: '+ ${email}"></h1>
+
+<div th:if="${hasProducts}" th:each="product : ${products}" >
+
+    <h2 th:text="${product.productName}"></h2>
+    <img th:src="${product.productImage}"/>
+    <p th:text="${product.productDescription}"></p>
+    <p th:text="${product.productPrice}"></p>
+
+    <form th:action="'/addtocart/'+ ${product.id}+'?_method=PUT'" method="POST">
+        <button value="add cart" type="submit">Add To cart!!!!!#@!@#!@</button>
+    </form>
+    <form th:action="'/saveitems/'+ ${product.id}+'?_method=PUT'" method="POST">
+        <button value="add cart" type="submit">SAVE!!!!!#@!@#!@</button>
+    </form>
+</div>
+
+<div th:if="${email}" class="add-product">
+    <form action="/addproduct" method="POST" class="product-form-container">
+        <h1>Add Product</h1>
+        <label for="productName">Product Name</label>
+        <input id="productName"
+               type="text"
+               name="productName"
+               placeholder="an old taco"
+               required>
+        <label for="price">Price</label>
+        <input id="productPrice"
+               type="number"
+               name="productPrice"
+               placeholder="Price (in whole dollars)"
+               required>
+        <label for="description">Description</label>
+        <textarea id="productdescription"
+          rows="4" cols="50"
+          name="productDescription"
+          required></textarea>
+        <label for="productImage">Image</label>
+        <input  id="productImage"
+           type="url"
+           name="productImage"
+           placeholder="https://i.redd.it/6k6vs1mlrg921.jpg"
+           required>
+        <button type="submit" class="btn">List Item</button>
+    </form>
+</div>
+
+<div th:if="${email}">
+    <h2>CART############################### ></h2>
+    <h1 th:if="${cart.size()==0}">No Items In Cart</h1>
+    <div th:if="${cart.size()!=0}" th:each="item : ${cart}">
+        <h4 th:text="${item.productName}"></h4>
+        <img th:src="${item.productImage}"/>
+    </div>
+    <form th:if="${cart.size()!=0}" th:action="'/emptycart'+ '?_method=DELETE'" method="POST">
+        <button type="submit" >Empty cart</button>
+    </form>
+</div>
+
+<div th:if="${email}">
+    <h2>SAVED ITEMS############################### ></h2>
+    <h1 th:if="${saveitems.size()==0}">No Items In Cart</h1>
+    <div th:if="${saveitems.size()!=0}" th:each="saveitem : ${saveitems}">
+        <h4 th:text="${saveitem.productName}"></h4>
+        <img th:src="${saveitem.productImage}"/>
+    </div>
+</div>
+
+</body>
+</html>
