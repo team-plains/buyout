@@ -121,6 +121,10 @@ public class Product {
         this.profileCart = profileCart;
     }
 
+    public void removeItemFromProfileCart(){
+        this.profileCart= null;
+    }
+
     public Profile getProfileSavedItems() {
         return profileSavedItems;
     }

@@ -77,6 +77,7 @@ public class Profile {
         this.cart = cart;
     }
 
+
     public BuyoutUser getProfile() {
         return profile;
     }
@@ -88,6 +89,7 @@ public class Profile {
     public List<Product> getSavedItems() {
         return savedItems;
     }
+
 
     public void setSavedItems(List<Product> savedItems) {
         this.savedItems = savedItems;
