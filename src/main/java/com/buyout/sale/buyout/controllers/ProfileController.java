@@ -58,6 +58,8 @@ public class ProfileController {
         boolean hasWishListItems = false;
         if(user.getProfile().getSavedItems() != null){
             hasWishListItems=true;
+            List<Product> savedProducts = user.getProfile().getSavedItems();
+            m.addAttribute("savedProducts", savedProducts);
         }
         m.addAttribute("hasWishListItems", hasWishListItems);
         if(loggedIn) {
@@ -65,7 +67,7 @@ public class ProfileController {
             if (currentUser.getUsername().equals(user.getUsername())) {
                 adminAccess = true;
             }
-
+//access the actual wish list
         }
         m.addAttribute("user", user);
         if (user.getProfile().getProducts() != null) {
@@ -109,6 +111,7 @@ public class ProfileController {
 // List<Product> bbProducts =
 //            m.addAttribute("bbProducts", bbProducts);
         }
+
         return "compare.html";
     }
 
