@@ -51,7 +51,7 @@
 
                         <img src="/img/like.png" class="product-icons">Add to wish list</button></form>
                 <hr><h5 th:text="${productClickedOn.productName}" class="card-title"></h5>
-                <h5 th:text="${productClickedOn.getProfileUser.getEmail()}" class="card-title"></h5>
+<!--                <h5 th:text="${productClickedOn.getProfileUser.getEmail()}" class="card-title"></h5>-->
                 <a th:href="'/profile/' + ${productClickedOn.getProfileUser.getProfile.getId()} ">  <h5 th:text="${productClickedOn.getProfileUser.getProfile.getUsername}" class="card-body-seller"></h5></a>
 
                 <!--                <hr><h5 th:text="${product.getProfileUser.getId()}" class="card-title"></h5>-->

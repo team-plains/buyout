@@ -1,6 +1,7 @@
 package com.buyout.sale.buyout.controllers;
 
 import com.buyout.sale.buyout.models.BuyoutUser;
+import com.buyout.sale.buyout.models.CompareProduct;
 import com.buyout.sale.buyout.models.Product;
 import com.buyout.sale.buyout.models.Profile;
 import com.buyout.sale.buyout.repository.BuyoutUserRepository;
@@ -14,8 +15,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.view.RedirectView;
 
+import java.io.IOException;
 import java.security.Principal;
+import java.util.ArrayList;
 import java.util.List;
+
+import static com.buyout.sale.buyout.controllers.BBcomparedController.getApiInformation;
 
 @Controller
 public class ProfileController {
@@ -107,9 +112,22 @@ public class ProfileController {
             m.addAttribute("userid",user.getId());
             m.addAttribute("cart",currentCart);
             m.addAttribute("email",user.getProfile().getEmail());
-// here's where to put the bb api biznezz. -----------------------------------------------
-// List<Product> bbProducts =
-//            m.addAttribute("bbProducts", bbProducts);
+
+            ArrayList<CompareProduct> comapredstuff = null;
+            try {
+                comapredstuff = getApiInformation(product);
+            } catch (IOException e) {
+                e.printStackTrace();
+
+            }
+            for(CompareProduct thing : comapredstuff){
+                System.out.println(thing.getName());
+                System.out.println(thing.getImage());
+                System.out.println(thing.getRegularPrice());
+                System.out.println(thing.getUrl());
+            }
+
+            m.addAttribute("bbProducts", comapredstuff);
         }
 
         return "compare.html";
