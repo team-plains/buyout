@@ -32,11 +32,18 @@ public class BBcomparedController {
     @GetMapping("/testAPI")
     public RedirectView testingAPI(){
         try {
-            List<Product> product = productRepository.findAll();
-            if(product.size()==0){
+            Product product = productRepository.findById(3L).get();
+            if(product==null){
                 System.out.println("No available products");
             }else {
-                getApiInformation(product.get(0));
+               ArrayList<CompareProduct> comapredstuff = getApiInformation(product);
+                for(CompareProduct thing : comapredstuff){
+                    System.out.println(thing.getName());
+                    System.out.println(thing.getImage());
+                    System.out.println(thing.getRegularPrice());
+                    System.out.println(thing.getUrl());
+                }
+
             }
 
         } catch (IOException e) {
@@ -46,13 +53,13 @@ public class BBcomparedController {
     }
 
 
-        public static void getApiInformation(Product item) throws IOException {
+        public static ArrayList<CompareProduct> getApiInformation(Product item) throws IOException {
             BufferedReader reader = null;
             String line;
             StringBuffer responseContent = new StringBuffer();
             String searchQuery =  breakStringForApiCall(item.getProductName());
 
-            String bbURL = ("https://api.bestbuy.com/v1/products(("+searchQuery+")&("+item.getCategory()+"))?apiKey=01A8DwW36mBlILSxadcGJu5r&sort=regularPrice.asc&show=regularPrice,name,image&pageSize=3&format=json");
+            String bbURL = ("https://api.bestbuy.com/v1/products(("+searchQuery+")&("+item.getCategory()+"))?apiKey=01A8DwW36mBlILSxadcGJu5r&sort=regularPrice.asc&show=regularPrice,name,url,image&pageSize=3&format=json");
 
             try {
                 URL url = new URL(bbURL);
@@ -86,11 +93,7 @@ public class BBcomparedController {
             BBjsonDeserializer results = gson.fromJson(responseContent.toString(), BBjsonDeserializer.class);
             System.out.println("==================" + results);
 
-            for(CompareProduct product : results.products){
-                System.out.println(product.getName());
-                System.out.println(product.getImage());
-                System.out.println(product.getRegularPrice());
-            }
+            return results.products;
 
 
 
