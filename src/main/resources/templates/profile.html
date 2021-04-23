@@ -35,7 +35,7 @@
     <span th:if="${adminAccess}" class="profile-section">
         <h2>Products on Your Wish List </h2>
         <span th:if="${!hasWishListItems}" th:text="You currently have no items in your wish list."></span>
-        <span th:if="${hasWishListItems}" th:each="product : ${products}">
+        <span th:if="${hasWishListItems}" th:each="product : ${savedProducts}">
         <div class="card" style="width: 18rem;">
         <a th:href="'/compare/' + ${product.getId()}">
         <img th:src="${product.productImage}" class="product-image">
@@ -51,7 +51,7 @@
 <!--                <a href="#"><img src="/img/like.png" class="product-icons">Add to wish list</a>-->
                 <hr><h5 th:text="${product.productName}" class="card-title"></h5>
 <!--                <h5 th:text="${product.getProfileUser.getEmail()}" class="card-title"></h5>-->
-             <a th:href="'/profile/' + ${product.getProfileUser.getId()} ">
+             <a th:href="'/profile/' + ${product.getProfileUser.getProfile.getId()} ">
                  <h5 th:text="${product.getProfileUser.getProfile.getUsername}" class="card-body-seller"></h5>
              </a>
 

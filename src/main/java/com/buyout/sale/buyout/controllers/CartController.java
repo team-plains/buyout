@@ -30,24 +30,24 @@ public class CartController {
     @Autowired
     BuyoutUserControllers isLoggedIn;
 
-    public Boolean isLoggedIn(Principal p){
+    public Boolean isLoggedIn(Principal p) {
         if (p != null) return true;
         else return false;
     }
 
     @GetMapping("/dummy")
-    public String dummy(Principal p, Model m){
+    public String dummy(Principal p, Model m) {
 
-        boolean hasProducts= true;
+        boolean hasProducts = true;
 
-        if(p!=null){
+        if (p != null) {
             System.out.println(p.getName());
             List<Product> products = productRepository.findAll();
-            if(products.size()==0){
+            if (products.size() == 0) {
                 System.out.println("inside product size if statement line 61");
-                hasProducts=false;
-            }else{
-                m.addAttribute("products",products);
+                hasProducts = false;
+            } else {
+                m.addAttribute("products", products);
 
             }
 
@@ -58,25 +58,23 @@ public class CartController {
             List<Product> currentProducts = user.getProfile().getProducts();
 
 //            System.out.println("The size of the users own products "+currentProducts.size());
-            System.out.println("THIS IS THE PERSON OWN MADE PRODUCtsssssssss TEST"+currentProducts.size());
-            List<Product> currentCart=user.getProfile().getCart();
+            System.out.println("THIS IS THE PERSON OWN MADE PRODUCtsssssssss TEST" + currentProducts.size());
+            List<Product> currentCart = user.getProfile().getCart();
             List<Product> currentSavedItems = user.getProfile().getSavedItems();
             System.out.println(currentSavedItems);
-            System.out.println("this is the users cart! "+currentCart.size());
+            System.out.println("this is the users cart! " + currentCart.size());
 
-            m.addAttribute("saveitems",currentSavedItems);
-            m.addAttribute("cart",currentCart);
+            m.addAttribute("saveitems", currentSavedItems);
+            m.addAttribute("cart", currentCart);
 
 
-            m.addAttribute("email",user.getProfile().getEmail());
+            m.addAttribute("email", user.getProfile().getEmail());
         }
 
 
-
-
-        m.addAttribute("hasProducts",hasProducts);
+        m.addAttribute("hasProducts", hasProducts);
         System.out.println(hasProducts);
-        boolean loggedIn=isLoggedIn(p);
+        boolean loggedIn = isLoggedIn(p);
         m.addAttribute("loggedIn", loggedIn);
 
         return "testhome.html";
@@ -84,31 +82,72 @@ public class CartController {
 
 
     @PutMapping("/addtocart/{id}")
-    public RedirectView addProductToCart(@PathVariable long id, Principal p){
-            Product product = productRepository.findById(id).get();
-            BuyoutUser user = buyoutUserRepository.findByUsername(p.getName());
-            Profile profileUser = profileRepository.findByEmail(user.getProfile().getEmail());
+    public RedirectView addProductToCart(@PathVariable long id, Principal p) {
+        Product product = productRepository.findById(id).get();
+        BuyoutUser user = buyoutUserRepository.findByUsername(p.getName());
+        Profile profileUser = profileRepository.findByEmail(user.getProfile().getEmail());
 
-            System.out.println("This is the current user: "+user);
-            product.setProfileCart(user.getProfile());
-            System.out.println("Testing "+product.getProfileUser().getProfile().getUsername());
-            productRepository.save(product);
+        System.out.println("This is the current user: " + user);
+        product.setProfileCart(user.getProfile());
+        System.out.println("Testing " + product.getProfileUser().getProfile().getUsername());
+        productRepository.save(product);
 
-            return new RedirectView("/");
+        return new RedirectView("/");
     }
 
     @DeleteMapping("/emptycart")
-    public RedirectView emptyCarts(Principal p){
-        if(p!=null){
+    public RedirectView emptyCarts(Principal p) {
+        if (p != null) {
             BuyoutUser user = buyoutUserRepository.findByUsername(p.getName());
             Profile profile = user.getProfile();
 //            System.out.println("This is the profile inside of empty cart  >>>>>>>>>%%$$$$#### "+profile);
-           profile.getCart().forEach(Product::removeItemFromProfileCart);
+            profile.getCart().forEach(Product::removeItemFromProfileCart);
 
             buyoutUserRepository.save(user);
 
         }
 
-        return new RedirectView("/dummy");
+        return new RedirectView("/cart");
+    }
+
+
+    @GetMapping("/cart")
+    public String viewCart(Principal p, Model m) {
+        boolean hasProducts = true;
+        if (p != null) {
+            System.out.println(p.getName());
+            List<Product> products = productRepository.findAll();
+            if (products.size() == 0) {
+                System.out.println("inside product size if statement line 61");
+                hasProducts = false;
+            } else {
+                m.addAttribute("products", products);
+            }
+            boolean loggedIn = isLoggedIn(p);
+
+            BuyoutUser user = buyoutUserRepository.findByUsername(p.getName());
+//            System.out.println("This is current user in dummy route : "+user);
+            List<Product> currentProducts = user.getProfile().getProducts();
+//            System.out.println("The size of the users own products "+currentProducts.size());
+            System.out.println("THIS IS THE PERSON OWN MADE PRODUCtsssssssss TEST" + currentProducts.size());
+            List<Product> currentCart = user.getProfile().getCart();
+            List<Product> currentSavedItems = user.getProfile().getSavedItems();
+            System.out.println(currentSavedItems);
+            System.out.println("this is the users cart! " + currentCart.size());
+            m.addAttribute("isLoggedIn", isLoggedIn);
+            m.addAttribute("hasProducts", hasProducts);
+            m.addAttribute("saveditems", currentSavedItems);
+            m.addAttribute("cart", currentCart);
+            m.addAttribute("email", user.getProfile().getEmail());
+        }
+
+
+        m.addAttribute("hasProducts", hasProducts);
+        System.out.println(hasProducts);
+        boolean loggedIn = isLoggedIn(p);
+        m.addAttribute("loggedIn", loggedIn);
+
+        return "viewcart.html";
+
     }
 }

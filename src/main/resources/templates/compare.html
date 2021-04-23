@@ -52,7 +52,7 @@
                         <img src="/img/like.png" class="product-icons">Add to wish list</button></form>
                 <hr><h5 th:text="${productClickedOn.productName}" class="card-title"></h5>
                 <h5 th:text="${productClickedOn.getProfileUser.getEmail()}" class="card-title"></h5>
-                <a th:href="'/profile/' + ${product.getProfileUser.getId()} ">  <h5 th:text="${productClickedOn.getProfileUser.getProfile.getUsername}" class="card-body-seller"></h5></a>
+                <a th:href="'/profile/' + ${productClickedOn.getProfileUser.getProfile.getId()} ">  <h5 th:text="${productClickedOn.getProfileUser.getProfile.getUsername}" class="card-body-seller"></h5></a>
 
                 <!--                <hr><h5 th:text="${product.getProfileUser.getId()}" class="card-title"></h5>-->
             <h5 th:text="'$' + ${productClickedOn.productPrice}" class="card-body-price"></h5></div></div>
@@ -62,15 +62,15 @@
     <span th:if="${hasProducts}" th:each="product : ${bbProducts}">
         <div class="card" style="width: 18rem;">
 
-            <img th:src="${product.productImage}" class="product-image">
+            <img th:src="${product.getImage()}" class="product-image">
 
             <div class="card-body">
-                    <span th:text="${product.productDescription}"></span>
+<!--                    <span th:text="${product.getProductDescription()}"></span>-->
                     <span th:if="${loggedIn}">
-                    <a th:href="${product.url}" target="_blank"><img src="cart.png" class="product-icons"><button>Buy From Merchant</button></a>
+                    <a th:href="${product.getUrl()}" target="_blank"><img src="cart.png" class="product-icons"><button>Buy From Merchant</button></a>
                 </span>
-                <hr><h5 th:text="${product.productName}" class="card-title"></h5>
-            <h5 th:text="'$' + ${product.productPrice}"></h5></div></div>
+                <hr><h5 th:text="${product.getName()}" class="card-title"></h5>
+            <h5 th:text="'$' + ${product.getRegularPrice()}"></h5></div></div>
     </span>
 
 </article>
