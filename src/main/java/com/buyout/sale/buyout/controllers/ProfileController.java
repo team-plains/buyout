@@ -54,20 +54,20 @@ public class ProfileController {
 
     @GetMapping("/profile/{id}")
     public String showProfile(@PathVariable long id, Principal p, Model m) {
-        boolean loggedIn=false;
-        if(p!=null) loggedIn=true;
+        boolean loggedIn = false;
+        if (p != null) loggedIn = true;
         m.addAttribute("loggedIn", loggedIn);
         BuyoutUser user = buyoutUserRepository.findById(id).get();
         boolean adminAccess = false;
         boolean hasProducts = false;
         boolean hasWishListItems = false;
-        if(user.getProfile().getSavedItems() != null){
-            hasWishListItems=true;
+        if (user.getProfile().getSavedItems() != null) {
+            hasWishListItems = true;
             List<Product> savedProducts = user.getProfile().getSavedItems();
             m.addAttribute("savedProducts", savedProducts);
         }
         m.addAttribute("hasWishListItems", hasWishListItems);
-        if(loggedIn) {
+        if (loggedIn) {
             BuyoutUser currentUser = buyoutUserRepository.findByUsername(p.getName());
             if (currentUser.getUsername().equals(user.getUsername())) {
                 adminAccess = true;
@@ -81,38 +81,38 @@ public class ProfileController {
         }
         m.addAttribute("hasProducts", hasProducts);
         m.addAttribute("adminAccess", adminAccess);
-        m.addAttribute("userid",user.getId());
+        m.addAttribute("userid", user.getId());
 
         return "profile";
     }
 
     @GetMapping("/aboutus")
-    public String aboutUs(){
+    public String aboutUs() {
         return "aboutus";
     }
 
     @GetMapping("/compare/{id}")
-    public String compareProducts(@PathVariable long id, Principal p, Model m){
+    public String compareProducts(@PathVariable long id, Principal p, Model m) {
 // need these params: loggedIn , hasProducts , productClickedOn , bbProducts (bbProducts needs .url param)
-        boolean hasProducts= true;
-        boolean hasBBProducts=true;
+        boolean hasProducts = true;
+        boolean hasBBProducts = true;
         Product product = productRepository.findById(id).get();
-        if(product==null){
-            hasProducts=false;
-        }else{
-            m.addAttribute("productClickedOn",product);
+        if (product == null) {
+            hasProducts = false;
+        } else {
+            m.addAttribute("productClickedOn", product);
         }
-        m.addAttribute("hasProducts",hasProducts);
-        boolean loggedIn=isLoggedIn(p);
+        m.addAttribute("hasProducts", hasProducts);
+        boolean loggedIn = isLoggedIn(p);
         m.addAttribute("loggedIn", loggedIn);
-        if(loggedIn){
+        if (loggedIn) {
             BuyoutUser user = buyoutUserRepository.findByUsername(p.getName());
-            List<Product> currentCart=user.getProfile().getCart();
+            List<Product> currentCart = user.getProfile().getCart();
 
-            m.addAttribute("user",user.getProfile());
-            m.addAttribute("userid",user.getId());
-            m.addAttribute("cart",currentCart);
-            m.addAttribute("email",user.getProfile().getEmail());
+            m.addAttribute("user", user.getProfile());
+            m.addAttribute("userid", user.getId());
+            m.addAttribute("cart", currentCart);
+            m.addAttribute("email", user.getProfile().getEmail());
 
             ArrayList<CompareProduct> comapredstuff = null;
             try {
@@ -121,14 +121,16 @@ public class ProfileController {
                 e.printStackTrace();
 
             }
-            for(CompareProduct thing : comapredstuff){
-                System.out.println(thing.getName());
-                System.out.println(thing.getImage());
-                System.out.println(thing.getRegularPrice());
-                System.out.println(thing.getUrl());
-            }
-            if (comapredstuff.size()<=1){
-                hasBBProducts=false;
+//            for(CompareProduct thing : comapredstuff){
+//                System.out.println(thing.getName());
+//                System.out.println(thing.getImage());
+//                System.out.println(thing.getRegularPrice());
+//                System.out.println(thing.getUrl());
+//            }
+            if (comapredstuff != null) {
+                if (comapredstuff.size() <= 1) {
+                    hasBBProducts = false;
+                }
             }
             m.addAttribute("hasBBProducts", hasBBProducts);
             m.addAttribute("bbProducts", comapredstuff);
@@ -137,7 +139,7 @@ public class ProfileController {
         return "compare.html";
     }
 
-    public Boolean isLoggedIn(Principal p){
+    public Boolean isLoggedIn(Principal p) {
         if (p != null) return true;
         else return false;
     }
