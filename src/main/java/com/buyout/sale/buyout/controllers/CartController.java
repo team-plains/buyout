@@ -139,6 +139,7 @@ public class CartController {
             m.addAttribute("saveditems", currentSavedItems);
             m.addAttribute("cart", currentCart);
             m.addAttribute("email", user.getProfile().getEmail());
+            m.addAttribute("userid",user.getProfile().getId());
         }
 
 

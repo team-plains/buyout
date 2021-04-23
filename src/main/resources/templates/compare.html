@@ -59,7 +59,8 @@
     </span>
 
     <!-----------------------------products from api-->
-    <span th:if="${hasProducts}" th:each="product : ${bbProducts}">
+    <span th:if="${!hasBBProducts}"><h2>Your selected item did not match anything in that category from Best Buy.</h2></span>
+    <span th:if="${hasBBProducts}" th:each="product : ${bbProducts}">
         <div class="card" style="width: 18rem;">
 
             <img th:src="${product.getImage()}" class="product-image">

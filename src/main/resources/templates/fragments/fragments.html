@@ -126,10 +126,15 @@
 
 <form action="/checkout" method="GET"><button>
     <img src="/img/cart.png" class="product-icons">Check Out</button></form>
-
-
-
 </span>
+
+
+<span th:fragment="removeall">
+    <form  th:action="'/emptycart' + '?_method=DELETE'" method="POST"><button type="submit"><img src="/img/trash.png" class="product-icons">Empty Cart</button></form>
+</span>
+
+
+
 <span class="sidebarmain" th:fragment="sidebarsearch">
 
         <section>

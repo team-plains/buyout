@@ -95,6 +95,7 @@ public class ProfileController {
     public String compareProducts(@PathVariable long id, Principal p, Model m){
 // need these params: loggedIn , hasProducts , productClickedOn , bbProducts (bbProducts needs .url param)
         boolean hasProducts= true;
+        boolean hasBBProducts=true;
         Product product = productRepository.findById(id).get();
         if(product==null){
             hasProducts=false;
@@ -126,7 +127,10 @@ public class ProfileController {
                 System.out.println(thing.getRegularPrice());
                 System.out.println(thing.getUrl());
             }
-
+            if (comapredstuff.size()<=1){
+                hasBBProducts=false;
+            }
+            m.addAttribute("hasBBProducts", hasBBProducts);
             m.addAttribute("bbProducts", comapredstuff);
         }
 
