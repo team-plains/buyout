@@ -142,7 +142,19 @@ body {
   /*background-color: white;*/
 }
 
-.form-container input[type=text], .form-container input[type=password], .form-container input[type=email] {
+select #Category {
+  width: 90%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  border: none;
+  background: #f1f1f1;
+}
+select #Category:focus{
+  background-color: #ddd;
+  outline: none;
+}
+
+.form-container input[type=text], .form-container input[type=password], .form-container input[type=email] .form-container option{
   width: 90%;
   padding: 15px;
   margin: 5px 0 22px 0;
@@ -371,6 +383,16 @@ body {
 .card:hover > .card-body h5{
   visibility: visible;
 }
+.card-title {
+  visibility: hidden;
+
+}
+.card:hover > .card-title {
+  visibility: visible;
+  font-size: 1.2em;
+  font-weight: bold;
+}
+
 
 .product-icons{
   display:inline;

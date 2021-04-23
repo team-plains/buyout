@@ -49,7 +49,7 @@ public class CartController {
         System.out.println("Testing " + product.getProfileUser().getProfile().getUsername());
         productRepository.save(product);
 
-        return new RedirectView("/");
+        return new RedirectView("/cart");
     }
 
     @DeleteMapping("/delete/{id}")
