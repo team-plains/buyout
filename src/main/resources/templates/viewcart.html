@@ -18,7 +18,7 @@
 
 <header id="header1">
     <span th:replace="fragments/fragments :: topbarsellbutton"></span>
-    <span th:if="${loggedIn}" th:replace="fragments/fragments :: topbarprofilebutton"></span>
+<!--    <span th:if="${loggedIn}" th:replace="fragments/fragments :: topbarprofilebutton"></span>-->
     <!--    <span th:if="${loggedIn}" th:replace="fragments/fragments :: topbarviewcart"></span>-->
 
 </header>
@@ -31,6 +31,7 @@
 
 <nav id="mainNav">
     <span th:replace="fragments/fragments :: checkout"></span>
+    <span th:if="${cart.size()!=0}" th:replace="fragments/fragments :: removeall"></span>
 
 </nav>
 
@@ -46,7 +47,7 @@
                 <!--                <span th:if="${loggedIn}">-->
                 <!--                <span th:if="${!cart.contains(product)}">-->
 
-                <form th:action="'/emptycart'  + '?_method=DELETE'" method="POST"><button>Remove From Cart</button></form>
+                <form th:action="'/delete/'  +${product.getId()}+ '?_method=DELETE'" method="POST"><button type="submit">Remove From Cart</button></form>
                 <!--                    </span>-->
                 <hr><h5 th:text="${product.productName}" class="card-title"></h5>
              <a th:href="'/profile/' + ${product.getProfileUser.getId()} ">
@@ -55,6 +56,7 @@
 
                 <!--                <hr><h5 th:text="${product.getProfileUser.getId()}" class="card-title"></h5>-->
             <h5 th:text="'$' + ${product.productPrice}" class="card-body-price"></h5></div></div>
+
     </span>
 </article>
 
