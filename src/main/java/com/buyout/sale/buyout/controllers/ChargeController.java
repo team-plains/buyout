@@ -50,11 +50,7 @@ public class ChargeController {
         List<Product> currentCart = user.getProfile().getCart();
         model.addAttribute("boughitems",currentCart);
 
-        if(!currentCart.isEmpty()){
-            currentCart.forEach(val->{
-                productRepository.delete(val);
-            });
-        }
+
 
         return "result";
     }
