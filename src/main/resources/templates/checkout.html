@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Buyout.sale</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/reset.css">
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<header id="sitelogo">
+    <span th:replace="fragments/fragments :: logo"></span>
+
+</header>
+
+<header id="header1">
+    <span th:replace="fragments/fragments :: topbarsellbutton"></span>
+    <span th:if="${loggedIn}" th:replace="fragments/fragments :: topbarprofilebutton"></span>
+</header>
+
+<header id="header2">
+    <span th:if="${loggedIn}" th:replace="fragments/fragments :: topbarlogout"></span>
+
+</header>
+
+<nav id="mainNav">
+<h4> Please contact the item seller to coordinate payment and delivery.</h4>
+<h4> Payment is handled securely via Stripe.</h4>
+<h4> After payment, you will be able to leave a review for the seller.</h4>
+</nav>
+
+<article id="mainArticle">
+<form action='/charge' method='POST' id='checkout-form'>
+    <input type='hidden' th:value='${amount}' name='amount' />
+    <label>Price:<span th:text='${amount/100}' /></label>
+    <!-- NOTE: data-key/data-amount/data-currency will be rendered by Thymeleaf -->
+    <script
+            src='https://checkout.stripe.com/checkout.js'
+            class='stripe-button'
+            th:attr='data-key=${stripePublicKey},
+         data-amount=${amount},
+         data-currency=${currency}'
+            data-name='Item purchase'
+            data-description='Buyout.sale checkout'
+            data-image
+                    ='https://www.baeldung.com/wp-content/themes/baeldung/favicon/android-chrome-192x192.png'
+            data-locale='auto'
+            data-zip-code='false'>
+    </script>
+</form>
+</article>
+
+<footer id="pageFooter">
+    <span th:replace="fragments/fragments :: footer"></span>
+</footer>
+
+</body>
+</html>

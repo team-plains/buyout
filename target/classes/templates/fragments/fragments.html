@@ -1,0 +1,142 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/reset.css">
+<link rel="stylesheet" href="/css/style.css">
+
+<span th:fragment="logo"><a href="/"><img src="/img/logo.png"><h1 class="sitelogo">Buyout.sale</h1></a></span>
+
+<!--TOP BAR SELL ITEM BUTTON ------------->
+<span class="topbarsellbutton" th:fragment="topbarsellbutton">
+    <form action="/addproduct" name="addproduct" method="GET" class="sellbutton">
+        <button type="submit">Sell A Product</button>
+    </form>
+
+</span>
+
+<!--TOP BAR IF LOGGED IN------------------->
+
+<span class="topbarlogout" th:fragment="topbarlogout">
+        <span th:if="${loggedIn}">
+            <form class="logout" action="/logout">
+            <button class="logout-button" type="submit">Log out</button>
+            </form>
+        </span>
+</span>
+
+<span class="topbarprofilebutton" th:fragment="topbarprofilebutton">
+
+    <form th:if="${loggedIn}" th:action="'/profile/'+ ${userid}" method="GET" class="sellbutton">
+
+<!--    <form th:action="'/profile/'+${userprofileid}" method="GET" class="sellbutton">-->
+
+        <!--    <a th:href="@{/profile/{id}(id=${userprofileid})}"  class="sellbutton"></a>-->
+    <button type="submit">View Your Profile</button></form>
+</span>
+<!--TOP BAR IF GUEST -------------------------->
+<span class="topbarguest" th:fragment="topbarguest">
+    <span th:if="${!loggedIn}">
+    <button class="open-button" onclick="openSignupForm()">Sign Up</button>
+    <div class="form-popup" id="signupForm">
+        <form action="/signup" name="signup" method="POST" class="form-container">
+            <h1>Sign Up</h1>
+            <label for="username">Username</label>
+            <input id="username"
+                   type="text"
+                   minlength="6"
+                   maxlength="16"
+                   name="username"
+                   placeholder="dogeCoin99"
+                   required>
+            <label for="email">Email</label>
+            <input id="email"
+                   type="email"
+                   name="email"
+                   placeholder="superman@protonmail.com"
+                   minlength="6"
+                   required>
+            <label for="password">Password</label>
+            <input id="password"
+                   type="password"
+                   name="password"
+                   placeholder="Pa$$w0rd"
+                   required>
+            <button type="submit" class="btn">Sign Up</button>
+            <button type="button" class="btn cancel" onclick="closeSignupForm()">Cancel</button>
+        </form>
+    </div>
+            <button class="open-button" onclick="openLoginForm()">Log In</button>
+    <div class="form-popup" id="loginForm">
+        <form action="/login" name="login" method="POST" class="form-container">
+            <h1>Log In</h1>
+            <label for="username">Username</label>
+            <input id="username"
+                   type="text"
+                   minlength="6"
+                   maxlength="16"
+                   name="username"
+                   placeholder="dogeCoin99"
+                   required>
+            <label for="password">Password</label>
+            <input id="password"
+                   type="password"
+                   name="password"
+                   placeholder="Pa$$w0rd"
+                   required>
+            <button type="submit" class="btn">Log In</button>
+            <button type="button" class="btn cancel" onclick="closeLoginForm()">Cancel</button>
+        </form>
+    </div>
+    </span>
+
+    <script>
+        function openSignupForm() {
+            document.getElementById("signupForm").style.display = "block";
+        }
+
+        function closeSignupForm() {
+            document.getElementById("signupForm").style.display = "none";
+        }
+
+        function openLoginForm() {
+            document.getElementById("loginForm").style.display = "block";
+        }
+
+        function closeLoginForm() {
+            document.getElementById("loginForm").style.display = "none";
+        }
+    </script>
+</span>
+
+
+<!----------------------SIDEBAR---------------------->
+<span class="sidebarmain" th:fragment="sidebarmain">
+
+        <section>
+            <h2>Find A Product</h2>
+            <h3>Item Keyword</h3>
+            <form class="login" name="filtersearch" action="/search" method="POST">
+                <input type="text" placeholder="Mario Bros" name="productkeyword">
+                <button class="filterbutton" type="submit">Search</button>
+            </form>
+        </section>
+
+</span>
+<!------------SIDEBAR ON PROFILE PAGE-------------------->
+<span class="sidebarprofile" th:fragment="sidebarprofile">
+    <nav id="mainNav">
+        <section>
+            <h2 class="sidebarmain">Find A Product</h2>
+            <h3>Item Keyword</h3>
+            <form class="login" name="filtersearch" action="/search" method="POST">
+                <input type="text" placeholder="Mario Bros" name="productkeyword">
+                <button class="filterbutton" type="submit">Search</button>
+            </form>
+        </section>
+    </nav>
+</span>
+
+<!-- -----------------------------FOOTER------------>
+<span class="footer" th:fragment="footer">
+    &copy; 2021 - <a href="/aboutus">About the Developers</a>
+</span>

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/reset.css">
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+<header id="sitelogo">
+    <span th:replace="fragments/fragments :: logo"></span>
+
+</header>
+
+<header id="header1">
+
+</header>
+
+<header id="header2">
+
+</header>
+
+<nav id="mainNav">
+    <span th:if="${dupe}"> <h2 class="formh2">An account with that username or email already exists. Please try again."></h2></span>
+    <span th:unless="${dupe}"> <h2 class="formh2">You need to be logged in to do that.</h2></span>
+</nav>
+
+<article id="mainArticle">
+
+    <div class="dupeformbox">
+        <form action="/signup" name="signup" method="POST" class="mainformcontainer">
+            <h1>Sign Up</h1>
+            <label for="username">Username</label>
+            <input id="username"
+                   type="text"
+                   minlength="6"
+                   maxlength="16"
+                   name="username"
+                   placeholder="dogeCoin99"
+                   required>
+            <label for="email">Email</label>
+            <input  id="email"
+                    type="email"
+                    name="email"
+                    placeholder="superman@protonmail.com"
+                    minlength="6"
+                    required>
+            <label for="password">Password</label>
+            <input  id="password"
+                    type="password"
+                    name="password"
+                    placeholder="Pa$$w0rd"
+                    required>
+            <button type="submit" class="btn">Sign Up</button>
+        </form>
+</div>
+    <div class="dupeformbox">
+        <form action="/login" name="login" method="POST" class="mainformcontainer">
+            <h1>Log In</h1>
+            <label for="username">Username</label>
+            <input id="username"
+                   type="text"
+                   minlength="6"
+                   maxlength="16"
+                   name="username"
+                   placeholder="dogeCoin99"
+                   required>
+            <label for="password">Password</label>
+            <input  id="password"
+                    type="password"
+                    name="password"
+                    placeholder="Pa$$w0rd"
+                    required>
+
+            <button type="submit" class="btn">Log In</button>
+
+        </form>
+
+
+    </div>
+
+</article>
+
+<footer id="pageFooter">
+    <span th:replace="fragments/fragments :: footer"></span>
+
+</footer>
+
+
+</body>
+</html>

@@ -1,0 +1,197 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/reset.css">
+<link rel="stylesheet" href="/css/style.css">
+
+<span th:fragment="logo"><a href="/"><img src="/img/logo.png"><h1 class="sitelogo">Buyout.sale</h1></a></span>
+
+<!--TOP BAR SELL ITEM BUTTON ------------->
+<span class="topbarsellbutton" th:fragment="topbarsellbutton">
+    <form action="/addproduct" name="addproduct" method="GET" class="sellbutton">
+        <button type="submit">Sell A Product</button>
+    </form>
+
+</span>
+
+<!--TOP BAR IF LOGGED IN------------------->
+
+
+<span class="topbarlogout" th:fragment="topbarlogout">
+        <span th:if="${loggedIn}">
+            <form class="logout" action="/logout">
+            <button class="logout-button" type="submit">Log out</button>
+            </form>
+        </span>
+</span>
+
+<span class="topbarprofilebutton" th:fragment="topbarprofilebutton">
+
+    <form th:if="${loggedIn}" th:action="'/profile/'+ ${userid}" method="GET" class="sellbutton">
+
+<!--    <form th:action="'/profile/'+${userprofileid}" method="GET" class="sellbutton">-->
+
+        <!--    <a th:href="@{/profile/{id}(id=${userprofileid})}"  class="sellbutton"></a>-->
+    <button type="submit">View Your Profile</button></form>
+
+</span>
+<!--TOP BAR IF GUEST -------------------------->
+<span class="topbarguest" th:fragment="topbarguest">
+    <span th:if="${!loggedIn}">
+    <button class="open-button" onclick="openSignupForm()">Sign Up</button>
+    <div class="form-popup" id="signupForm">
+        <form action="/signup" name="signup" method="POST" class="form-container">
+            <h1>Sign Up</h1>
+            <label for="username">Username</label>
+            <input id="username"
+                   type="text"
+                   minlength="6"
+                   maxlength="16"
+                   name="username"
+                   placeholder="dogeCoin99"
+                   required>
+            <label for="email">Email</label>
+            <input id="email"
+                   type="email"
+                   name="email"
+                   placeholder="superman@protonmail.com"
+                   minlength="6"
+                   required>
+            <label for="password">Password</label>
+            <input id="password"
+                   type="password"
+                   name="password"
+                   placeholder="Pa$$w0rd"
+                   required>
+            <button type="submit" class="btn">Sign Up</button>
+            <button type="button" class="btn cancel" onclick="closeSignupForm()">Cancel</button>
+        </form>
+    </div>
+            <button class="open-button" onclick="openLoginForm()">Log In</button>
+    <div class="form-popup" id="loginForm">
+        <form action="/login" name="login" method="POST" class="form-container">
+            <h1>Log In</h1>
+            <label for="username">Username</label>
+            <input id="username"
+                   type="text"
+                   minlength="6"
+                   maxlength="16"
+                   name="username"
+                   placeholder="dogeCoin99"
+                   required>
+            <label for="password">Password</label>
+            <input id="password"
+                   type="password"
+                   name="password"
+                   placeholder="Pa$$w0rd"
+                   required>
+            <button type="submit" class="btn">Log In</button>
+            <button type="button" class="btn cancel" onclick="closeLoginForm()">Cancel</button>
+        </form>
+    </div>
+    </span>
+
+    <script>
+        function openSignupForm() {
+            document.getElementById("signupForm").style.display = "block";
+        }
+
+        function closeSignupForm() {
+            document.getElementById("signupForm").style.display = "none";
+        }
+
+        function openLoginForm() {
+            document.getElementById("loginForm").style.display = "block";
+        }
+
+        function closeLoginForm() {
+            document.getElementById("loginForm").style.display = "none";
+        }
+    </script>
+</span>
+
+
+<!----------------------SIDEBAR---------------------->
+<span class="sidebarmain" th:fragment="sidebarmain">
+    <section>
+        <span th:if="${loggedIn}">
+            <form class="form-container-cart" action="/cart">
+            <button class="open-button" type="submit">View Shopping Cart</button>
+            </form>
+        </span>
+        </section>
+</span>
+
+<span class="sidebarmain" th:fragment="checkout">
+
+<form class="form-container-cart" action="/checkout" method="GET"><button type="submit" class="open-button">
+    <img src="/img/cart.png" class="product-icons">Check Out</button></form>
+</span>
+
+
+<span th:fragment="removeall">
+    <form class="form-container-cart" th:action="'/emptycart' + '?_method=DELETE'" method="POST"><button type="submit" class="open-button"><img src="/img/trash.png" class="product-icons">Empty Cart</button></form>
+</span>
+
+
+
+<span class="sidebarmain" th:fragment="sidebarsearch">
+
+        <section>
+            <h2>Find A Product</h2>
+            <h3>Item Keyword</h3>
+            <form class="login" name="filtersearch" action="/search" method="POST">
+                <input type="text" placeholder="Mario Bros" name="productkeyword">
+                <button class="filterbutton" type="submit">Search</button>
+            </form>
+        </section>
+
+</span>
+<!--SIDEBAR ON ADD NEW PRODUCT-->
+<span class="sidebarmain" th:fragment="sidebaraddnew">
+<label for="Category">Choose a category:</label>
+<select name="Category" id="Category" form="addproductform" required>
+    <option value="(categoryPath.id=pcmcat209400050001)">Cell Phones</option>
+    <option value="(categoryPath.id=abcat0501000)">Computers</option>
+    <option value="(categoryPath.id=abcat0401000)">Digital Cameras</option>
+    <option value="(categoryPath.id=pcmcat242800050021)">Health, Fitness and Beauty</option>
+    <option value="(categoryPath.id=abcat0204000)">Headphones</option>
+    <option value="(categoryPath.id=pcmcat241600050001)">Home Audio</option>
+    <option value="(categoryPath.id=pcmcat254000050002)">Home Automation and Security</option>
+    <option value="(categoryPath.id=pcmcat209000050006)">iPad, Tablets and E-Readers</option>
+    <option value="(categoryPath.id=abcat0502000)">Laptops</option>
+    <option value="(categoryPath.id=pcmcat232900050000)">Nintendo 3DS</option>
+    <option value="(categoryPath.id=pcmcat295700050012)">Playstation 4</option>
+    <option value="(categoryPath.id=pcmcat310200050004)">Portable and Wireless Speakers</option>
+    <option value="(categoryPath.id=pcmcat243400050029)">PS Vita</option>
+    <option value="(categoryPath.id=abcat0904000)">Ranges, Cooktops and Ovens</option>
+    <option value="(categoryPath.id=abcat0901000)">Refrigerators</option>
+    <option value="(categoryPath.id=abcat0912000)">Small Kitchen Appliances</option>
+    <option value="(categoryPath.id=abcat0101000)">TVs</option>
+    <option value="(categoryPath.id=abcat0910000)">Washers and Dryers</option>
+    <option value="(categoryPath.id=pcmcat273800050036)">Wii U</option>
+    <option value="(categoryPath.id=pcmcat300300050002)">Xbox One</option>
+</select>
+
+
+</span>
+
+
+<!------------SIDEBAR ON PROFILE PAGE-------------------->
+<span class="sidebarprofile" th:fragment="sidebarprofile">
+    <nav id="mainNav">
+        <section>
+            <h2 class="sidebarmain">Find A Product</h2>
+            <h3>Item Keyword</h3>
+            <form class="login" name="filtersearch" action="/search" method="POST">
+                <input type="text" placeholder="Mario Bros" name="productkeyword">
+                <button class="filterbutton" type="submit">Search</button>
+            </form>
+        </section>
+    </nav>
+</span>
+
+<!-- -----------------------------FOOTER------------>
+<span class="footer" th:fragment="footer">
+    &copy; 2021 - <a href="/aboutus">About the Developers</a>
+</span>

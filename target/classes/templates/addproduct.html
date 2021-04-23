@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Buyout.sale</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/reset.css">
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+<header id="sitelogo">
+    <span th:replace="fragments/fragments :: logo"></span>
+
+</header>
+
+<header id="header1">
+    <span th:replace="fragments/fragments :: topbarsellbutton"></span>
+    <span th:if="${loggedIn}" th:replace="fragments/fragments :: topbarprofilebutton"></span>
+</header>
+
+<header id="header2">
+    <span th:if="${loggedIn}" th:replace="fragments/fragments :: topbarlogout"></span>
+    <span th:if="${!loggedIn}" th:replace="fragments/fragments :: topbarguest"></span>
+
+</header>
+
+<nav id="mainNav">
+    <h2 th:if="${loggedIn}" th:text="'Logged in as: '+ ${email}"></h2>
+
+    <span th:replace="fragments/fragments :: sidebarmain"></span>
+
+</nav>
+
+<article id="mainArticle">
+<div th:if="${email}" class="add-product">
+    <form action="/addproduct" method="POST" class="product-form-container">
+        <h1>Add Product</h1>
+        <label for="productName">Product Name</label>
+        <input id="productName"
+               type="text"
+               name="productName"
+               placeholder="an old taco"
+               required>
+        <label for="price">Price</label>
+        <input id="productPrice"
+               type="number"
+               name="productPrice"
+               placeholder="Price (in whole dollars)"
+               required>
+        <label for="description">Description</label>
+        <textarea id="productdescription"
+                  rows="4" cols="50"
+                  name="productDescription"
+                  required></textarea>
+        <label for="productImage">Image</label>
+        <input  id="productImage"
+                type="url"
+                name="productImage"
+                placeholder="https://i.redd.it/6k6vs1mlrg921.jpg"
+                required>
+        <button type="submit" class="btn">List Item</button>
+    </form>
+</div>
+
+
+</article>
+
+<footer id="pageFooter">
+    <span th:replace="fragments/fragments :: footer"></span>
+
+</footer>
+
+
+</body>
+</html>

@@ -1,0 +1,516 @@
+body {
+  display: grid;
+  grid-template-areas:
+    "logo logo header1 header2"
+    "nav nav article article"
+    "nav nav footer footer";
+  grid-template-rows: 80px 1fr 70px;
+  grid-template-columns: 270px 120px 1fr 480px;
+  grid-row-gap: 10px;
+  grid-column-gap: 10px;
+  height: 100vh;
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+#header1, #header2, #header3, footer, article, nav, div {
+  padding: 1.2em;
+  background: #DFE7EF;
+}
+
+
+#header1{
+  grid-area: header1;
+}
+
+#header2{
+  grid-area: header2;
+}
+
+
+#pageFooter {
+  grid-area: footer;
+}
+#mainArticle {
+  grid-area: article;
+}
+#mainNav {
+  grid-area: nav;
+  /*background-color: white;*/
+}
+#sitelogo {
+  grid-area: logo;
+  margin: 0px;
+  padding: 0px;
+
+}
+#sitelogo a{
+  text-decoration: none;
+  color: black;
+}
+#sitelogo img{
+  float:left;
+  height:80px;
+}
+.sitelogo{
+  font-family: 'Lexend', sans-serif;
+  margin-top: 20px;
+  font-size: 2em;
+  display: inline-block;
+}
+/* Stack the layout on small devices/viewports. */
+/* @media all and (max-width: 575px) {
+  body {
+    grid-template-areas:
+      "header"
+      "article"
+      "logo"
+      "nav"
+      "footer";
+    grid-template-rows: 80px 1fr 70px 1fr 70px;
+    grid-template-columns: 1fr;
+ }
+} */
+
+/* -------------------login form-------------------- */
+
+/*.login input{*/
+
+/*    padding: 5px;*/
+/*    margin: 0px 5px 0px 0;*/
+/*    border: none;*/
+/*    background: #f1f1f1;*/
+/*}*/
+
+/*.login button {*/
+/*    background-color: #4CAF50;*/
+/*    color: white;*/
+/*    padding: 5px;*/
+/*    width: 100px;*/
+/*    border: none;*/
+/*    cursor: pointer;*/
+/*    opacity: 0.8;*/
+
+/*}*/
+
+/* ------------------logout button --------------------- */
+
+
+.logout-button{
+  background-color: #af7c4c;
+  color: white;
+  padding: 10px;
+  margin: 0 10px 10px 0;
+  border: none;
+  cursor: pointer;
+  opacity: 0.8;
+  width: 200px;
+}
+
+/* -----------------signup form --------------------- */
+
+/* Button used to open the  form */
+.open-button {
+  background-color: rgb(30, 174, 75);
+  color: white;
+  padding: 10px;
+  margin: 0 10px 10px 0;
+  border: none;
+  cursor: pointer;
+  opacity: 0.8;
+  width: 200px;
+  display: inline;
+}
+
+.form-popup {
+  display: none;
+  position: fixed;
+  margin-top: -35px;
+  margin-right: 10px;
+  border: 3px solid #f1f1f1;
+  z-index: 9;
+}
+
+.form-container {
+  max-width: 600px;
+  padding: 10px;
+  background-color: white;
+}
+
+.form-container-cart {
+  max-width: 600px;
+  padding: 10px;
+  /*background-color: white;*/
+}
+
+select #Category {
+  width: 90%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  border: none;
+  background: #f1f1f1;
+}
+select #Category:focus{
+  background-color: #ddd;
+  outline: none;
+}
+
+.form-container input[type=text], .form-container input[type=password], .form-container input[type=email] .form-container option{
+  width: 90%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  border: none;
+  background: #f1f1f1;
+}
+
+.form-container input[type=text]:focus, .form-container input[type=password]:focus, .form-container input[type=email]:focus {
+  background-color: #ddd;
+  outline: none;
+}
+
+.form-container .btn {
+  background-color: #4CAF50;
+  color: white;
+  padding: 16px 20px;
+  border: none;
+  cursor: pointer;
+  margin:10px auto 10px auto;
+  opacity: 0.8;
+  display: block;
+  width: 70%;
+}
+
+.form-container .cancel {
+  background-color: red;
+}
+
+.form-container .btn:hover, .open-button:hover {
+  opacity: 1;
+}
+
+
+.formh2{
+  font-size: 1.2em;
+}
+
+.mainformcontainer {
+  max-width: 300px;
+  padding: 10px;
+  background-color: white;
+  box-shadow: 0px 15px 35px -5px rgba(50, 88, 130, 0.32);
+  border-radius: 15px;
+
+}
+
+.mainformcontainer input[type=text], .mainformcontainer input[type=password], .mainformcontainer input[type=email] {
+  width: 90%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  border: none;
+  background: #f1f1f1;
+}
+
+.mainformcontainer input[type=text]:focus, .mainformcontainer input[type=password]:focus, .mainformcontainer input[type=email]:focus {
+  background-color: #ddd;
+  outline: none;
+}
+
+.mainformcontainer .btn {
+  background-color: #4CAF50;
+  color: white;
+  padding: 16px 20px;
+  border: none;
+  cursor: pointer;
+  margin:10px auto 10px auto;
+  opacity: 0.8;
+  display: block;
+  width: 70%;
+}
+.dupeformbox {
+  display: inline;
+}
+
+.mainformcontainer h1{
+  font-size: 2em;
+}
+
+/* ------------- nav filters ----------- */
+
+#mainNav {
+  font-size: large;
+}
+#mainNav fieldset {
+  border-radius: 8px;
+}
+#mainNav input {
+  float:left;
+}
+#mainNav label {
+  display: block;
+  padding: 10px 30px 10px 5px;
+  font-weight: bold;
+}
+#mainNav span {
+  padding-left: 30px;
+}
+
+
+
+
+
+/* --------------------------product cards-------- */
+#mainArticle {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  align-items: flex-start;
+}
+
+.card-title, .card-body a{
+  font-family: 'Roboto', sans-serif;
+  font-size: large;
+}
+.card-body a {
+  display: inline-block;
+  padding: 5px;
+}
+
+.card{
+  box-shadow: 10px 25px 45px -15px rgba(50, 88, 130, 0.32);
+  border-radius: 15px;
+  transition: transform .2s;
+  margin:10px;
+  background-color: white;
+}
+
+
+.card-body{
+  padding: 5px;
+  margin-top: -160px;
+  -webkit-transition: all 1s ease;
+  -moz-transition: all 1s ease;
+  -o-transition: all 1s ease;
+  transition: all 1s ease-in-out;
+  background-color: white;
+  /*box-shadow: 0px 15px 35px -5px rgba(50, 88, 130, 0.32);*/
+
+}
+
+.card-body a{
+  visibility: hidden;
+  text-decoration: none;
+
+}
+.card-body span{
+  visibility: hidden;
+  font-size: 1.2em;
+}
+
+.card:hover > .card-body{
+  margin-top: -0px;
+  -webkit-transition: all 1s ease;
+  -moz-transition: all 1s ease;
+  -o-transition: all 1s ease;
+  transition: all 1s ease;
+}
+
+.card:hover > .card-body > a{
+  visibility: visible;
+  display:block;
+}
+
+.card:hover > .card-body > span{
+  visibility: visible;
+  background-color: #fff;
+  color: black;
+  display: inline-block;
+  border-radius: 15px;
+  padding: 5px;
+
+}
+.product-image{
+  width: 100%;
+  border-radius: 15px;
+  /*box-shadow: 0px 15px 35px -5px rgba(50, 88, 130, 0.32);*/
+
+}
+
+.productdetails span{
+  visibility: hidden;
+  color: white;
+
+}
+.product-image:hover > .productdetails > span {
+  visibility: visible;
+}
+
+.card-body-seller{
+  color:rgb(68, 63, 63);
+  visibility: hidden;
+}
+
+.card-body-seller:hover{
+  visibility: visible;
+}
+
+.card-body-price{
+  color: black;
+  float: right;
+  margin: 0;
+  /* visibility: hidden; */
+}
+.card-body form{
+  visibility: hidden;
+  background-color: white;
+  margin: 5px;
+  border: 0;
+}
+
+.card-body button{
+  visibility: hidden;
+  background-color: white;
+  border: 0;
+}
+.card:hover > .card-body  button{
+  visibility: visible;
+}
+.card:hover > .card-body  form{
+  visibility: visible;
+}
+
+.card h5{
+  visibility: hidden;
+}
+.card:hover > .card-body h5{
+  visibility: visible;
+}
+.card-title {
+  visibility: hidden;
+
+}
+.card:hover > .card-title {
+  visibility: visible;
+  font-size: 1.2em;
+  font-weight: bold;
+}
+
+
+.product-icons{
+  display:inline;
+  width:35px;
+  margin-top: 5px;
+}
+
+
+/* --------------------*/
+
+.profile-section{
+  display:block;
+}
+.profile-section h2{
+  font-size: 2em;
+}
+
+
+/* add product----------- */
+
+
+.product-form-container {
+  max-width: 600px;
+  padding: 10px;
+  background-color: white;
+}
+
+.product-form-container input, .product-form-container textarea {
+  width: 90%;
+  padding: 15px;
+  display: block;
+  margin: 5px 0 22px 0;
+  border: none;
+  background: #f1f1f1;
+  background-color: #ddd;
+  outline: none;
+
+}
+
+.product-form-container .btn {
+  background-color: #4CAF50;
+  color: white;
+  padding: 16px 20px;
+  border: none;
+  cursor: pointer;
+  margin:10px auto 10px auto;
+  opacity: 0.8;
+  display: block;
+  width: 70%;
+}
+
+.sellbutton {
+  display: inline;
+}
+.sellbutton button{
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px;
+  margin: 0 10px 10px 0;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  opacity: 0.8;
+
+}
+
+
+
+/* ---------mainnav keyword search and filters---- */
+
+nav {
+  padding: 10px;
+
+}
+.sidebarmain {
+  font-size: 1.5em;
+  margin-bottom: 10px;
+}
+
+.filters{
+  margin-top: 100px;
+}
+nav input{
+  padding: 10px;
+  margin: 10px auto;
+
+}
+
+nav button{
+  margin-top: 5px;
+  display: block;
+}
+
+.filterbutton {
+  background-color: #4CAF50;
+  color: white;
+  padding: 16px 20px;
+  border: none;
+  cursor: pointer;
+  margin:10px auto 10px auto;
+  opacity: 0.8;
+  display: block;
+  width: 70%;
+}
+
+input[type=checkbox]
+{
+  /* Double-sized Checkboxes */
+  -ms-transform: scale(1.3); /* IE */
+  -moz-transform: scale(1.3); /* FF */
+  -webkit-transform: scale(1.3); /* Safari and Chrome */
+  -o-transform: scale(1.3); /* Opera */
+  transform: scale(1.3);
+  padding: 10px;
+}
+
+/* references */
+/* https://codepen.io/albertoleon/pen/jONyrvY product cards*/
+/* https://www.w3schools.com/howto/howto_js_popup_form.asp signup form dropdown*/
+
+

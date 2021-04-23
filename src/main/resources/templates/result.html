@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Buyout.sale</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/reset.css">
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+<header id="sitelogo">
+    <span th:replace="fragments/fragments :: logo"></span>
+
+</header>
+
+<header id="header1">
+    <span th:replace="fragments/fragments :: topbarsellbutton"></span>
+    <span th:if="${loggedIn}" th:replace="fragments/fragments :: topbarprofilebutton"></span>
+    <!--    <span th:if="${loggedIn}" th:replace="fragments/fragments :: topbarviewcart"></span>-->
+
+</header>
+
+<header id="header2">
+    <span th:if="${loggedIn}" th:replace="fragments/fragments :: topbarlogout"></span>
+<!--    <span th:if="${!loggedIn}" th:replace="fragments/fragments :: topbarguest"></span>-->
+
+</header>
+
+<nav id="mainNav">
+    <span th:replace="fragments/fragments :: sidebarmain"></span>
+
+</nav>
+
+<article id="mainArticle">
+<span class="resultspage">
+    <h2>Congratulations! Your payment has been submitted.</h2>
+    <h3>Contact your seller
+<!--        at <span th:text=""></span> -->
+        to arrange delivery.</h3>
+</span>
+
+</article>
+
+<footer id="pageFooter">
+    <span th:replace="fragments/fragments :: footer"></span>
+</footer>
+
+
+</body>
+
+
