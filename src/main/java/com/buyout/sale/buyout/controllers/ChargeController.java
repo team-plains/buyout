@@ -1,6 +1,11 @@
 package com.buyout.sale.buyout.controllers;
 
 
+import com.buyout.sale.buyout.models.BuyoutUser;
+import com.buyout.sale.buyout.models.Product;
+import com.buyout.sale.buyout.repository.BuyoutUserRepository;
+import com.buyout.sale.buyout.repository.ProductRepository;
+import com.buyout.sale.buyout.repository.ProfileRepository;
 import com.stripe.exception.StripeException;
 import com.stripe.model.Charge;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,15 +17,26 @@ import com.stripe.Stripe;
 
 import javax.naming.AuthenticationException;
 import javax.smartcardio.CardException;
+import java.security.Principal;
+import java.util.List;
 
 
 @Controller
 public class ChargeController {
     @Autowired
+    BuyoutUserRepository buyoutUserRepository;
+
+    @Autowired
+    ProductRepository productRepository;
+
+    @Autowired
+    ProfileRepository profileRepository;
+
+    @Autowired
     private StripeService paymentsService;
 
     @PostMapping("/charge")
-    public String charge(ChargeRequest chargeRequest, Model model)
+    public String charge(ChargeRequest chargeRequest, Model model, Principal p)
             throws StripeException, AuthenticationException, CardException {
         chargeRequest.setDescription("Example charge");
         chargeRequest.setCurrency(ChargeRequest.Currency.EUR);
@@ -29,6 +45,17 @@ public class ChargeController {
         model.addAttribute("status", charge.getStatus());
         model.addAttribute("chargeId", charge.getId());
         model.addAttribute("balance_transaction", charge.getBalanceTransaction());
+
+        BuyoutUser user = buyoutUserRepository.findByUsername(p.getName());
+        List<Product> currentCart = user.getProfile().getCart();
+        model.addAttribute("boughitems",currentCart);
+
+        if(!currentCart.isEmpty()){
+            currentCart.forEach(val->{
+                productRepository.delete(val);
+            });
+        }
+
         return "result";
     }
 
