@@ -1,8 +1,15 @@
-# ecommerce
+# Buyout Sale
+
+Welcome To our e-commercy Full-Stack Web Application. Here you can post listing and look at other users listing while being able to save them or add them to your cart to purchase.  
 
 ## Team
 
 Cristian Robles, Stephen Webber, Victor Sullivan, Peng Chen
+
+## Languages / Tools  
+
+Languages: Java, Javascript , CSS, HTML , Markdown  
+Tools: SQL, Spring, Thymeleaf , Authenticator , postgresdb, Stripe java
 
 ## Communication plan
 
@@ -65,13 +72,10 @@ Master Branch
 PR’s to be reviewed by the team
 
 Merge at milestones.
- 
+
 Anything else you feel is important: Standups at 9AM via zoom.
 
-
 ## User Stories
-
-
 
 As a user, I want a site to list my products for sale so that potential customers can see them and compare them to equivalent products and purchase them.
 As a user, I want to browse products at the site without having to log in.
@@ -80,8 +84,6 @@ As a user, I want to be able to view my cart after logging into the site.
 As a user, I want to be able to compare between similar items offered by different sellers.
 As a user I would like to be able to purchase my selected items from the seller.
 As a user I would like to be able to review other sellers.
-
-
 
 ## Software Requirements
 
@@ -101,15 +103,12 @@ This site will not be a native mobile app.
 Payments and product fulfillment will be handled via a third party.
 Shipping/delivery costs are specified by each user.
 
-
-
 ## Functional Requirements
 
 A user agrees to a limitation of liability.
 A user is able to set and update their profile information.
 A logged-in user is able to leave a review after an item is purchased.
 A guest user can search the site without logging in or creating an account.
-
 
 ## Data Flow
 
@@ -124,7 +123,6 @@ The seller received an email notification that their item sold so that they can 
 /
 A user with an account is able to post a listing on their product with all given details on to the site, it will then be added onto the main site to be viewed by others and show it’s available for purchase.
 
-
 ## Non-Functional Requirements
 
 Our app will encrypt passwords and sensitive user information.
@@ -132,3 +130,23 @@ Our app will not handle information such as credit cards or addresses and will i
 Our app will test that logins must be unique based on email address.
 Our app will validate that items added to the database via the front-end interface are available for viewing and purchase.
 
+## User Flow  
+
+![User Flow Map](./assets/userflow.PNG)  
+
+## Wireframe
+
+Funny enough we ended up needing way more pages than these. 
+
+![Home Page](./assets/wireframe1.PNG)  
+![Profile Page](./assets/wireframe2.PNG)  
+![Login Page](./assets/wireframe3.PNG)  
+
+## Database Structure and Domain Modeling
+
+![Database Structure](./assets/dbstructure.PNG)  
+![Models](./assets/models.PNG)  
+
+## Table Relations  
+
+![Tables](./assets/tablerelations.PNG)  
